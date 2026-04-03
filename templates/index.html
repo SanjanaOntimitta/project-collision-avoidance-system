@@ -1,0 +1,49 @@
+!DOCTYPE html>
+
+<html>
+<head>
+    <title>Project Similarity</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        input, textarea { width: 400px; margin: 10px 0; }
+        button { padding: 10px; }
+    </style>
+</head>
+<body>
+
+<h2>Project Similarity System</h2>
+
+<form method="POST">
+    Title:<br>
+    <input type="text" name="title"><br>
+
+
+Abstract:<br>
+<textarea name="abstract"></textarea><br>
+
+Description:<br>
+<textarea name="description"></textarea><br>
+
+<button type="submit">Check</button>
+
+
+</form>
+
+{% if warning %}
+
+<h3 style="color:red;">{{ warning }}</h3>
+{% endif %}
+
+{% if results %}
+
+<h3>Results:</h3>
+<ul>
+{% for r in results %}
+    <li>{{ r.title }} → {{ r.score }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+
+</body>
+</html>
+
