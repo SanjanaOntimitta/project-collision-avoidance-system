@@ -1,49 +1,88 @@
-!DOCTYPE html>
-
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Project Similarity</title>
-    <style>
-        body { font-family: Arial; margin: 40px; }
-        input, textarea { width: 400px; margin: 10px 0; }
-        button { padding: 10px; }
-    </style>
+    <title>Project Collision Avoidance System</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<h2>Project Similarity System</h2>
+<div class="header">
+    🚀 Project Collision Avoidance System
+</div>
 
-<form method="POST">
-    Title:<br>
-    <input type="text" name="title"><br>
+<div class="container">
 
+    <h2>Submit Your Project</h2>
 
-Abstract:<br>
-<textarea name="abstract"></textarea><br>
+    <textarea id="projectInput" placeholder="Enter project description..."></textarea>
+    <div class="char-count" id="charCount">0 characters</div>
 
-Description:<br>
-<textarea name="description"></textarea><br>
+    <div class="button-group">
+        <button onclick="checkSimilarity()">Check</button>
+        <button onclick="clearText()">Clear</button>
+    </div>
 
-<button type="submit">Check</button>
+    <div class="result" id="resultBox">
+        <h3 id="scoreText"></h3>
 
+        <div class="progress-bar">
+            <div class="progress" id="progressBar"></div>
+        </div>
 
-</form>
+        <p id="statusText"></p>
+    </div>
 
-{% if warning %}
+</div>
 
-<h3 style="color:red;">{{ warning }}</h3>
-{% endif %}
+<script>
+// Character counter
+document.getElementById("projectInput").addEventListener("input", function() {
+    let count = this.value.length;
+    document.getElementById("charCount").innerText = count + " characters";
+});
 
-{% if results %}
+// Clear text
+function clearText() {
+    document.getElementById("projectInput").value = "";
+    document.getElementById("charCount").innerText = "0 characters";
+    document.getElementById("resultBox").style.display = "none";
+}
 
-<h3>Results:</h3>
-<ul>
-{% for r in results %}
-    <li>{{ r.title }} → {{ r.score }}</li>
-{% endfor %}
-</ul>
-{% endif %}
+// Similarity check (demo)
+function checkSimilarity() {
+    let text = document.getElementById("projectInput").value;
+
+    if (text.trim() === "") {
+        alert("Enter project description!");
+        return;
+    }
+
+    let score = Math.floor(Math.random() * 100);
+
+    document.getElementById("resultBox").style.display = "block";
+
+    document.getElementById("scoreText").innerText =
+        "Similarity Score: " + score + "%";
+
+    let progressBar = document.getElementById("progressBar");
+    progressBar.style.width = score + "%";
+    progressBar.innerText = score + "%";
+
+    let statusText = document.getElementById("statusText");
+
+    if (score > 70) {
+        statusText.innerText = "⚠ High Collision Detected";
+        statusText.style.color = "#ff4d4d";
+    } else if (score > 40) {
+        statusText.innerText = "⚡ Moderate Similarity";
+        statusText.style.color = "#ffd633";
+    } else {
+        statusText.innerText = "✅ Unique Project";
+        statusText.style.color = "#00ff99";
+    }
+}
+</script>
 
 </body>
 </html>
-
