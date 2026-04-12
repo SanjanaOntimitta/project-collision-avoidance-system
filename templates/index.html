@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Project Collision Avoidance System</title>
-    <link rel="stylesheet" href="style.css">
+<title>Project Collision Avoidance System</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -13,76 +13,114 @@
 
 <div class="container">
 
-    <h2>Submit Your Project</h2>
+<h2>Submit Your Project</h2>
 
-    <textarea id="projectInput" placeholder="Enter project description..."></textarea>
-    <div class="char-count" id="charCount">0 characters</div>
+<textarea id="projectInput" placeholder="Enter project description..."></textarea>
 
-    <div class="button-group">
-        <button onclick="checkSimilarity()">Check</button>
-        <button onclick="clearText()">Clear</button>
-    </div>
+<p style="text-align:center; margin:10px 0;">OR</p>
 
-    <div class="result" id="resultBox">
-        <h3 id="scoreText"></h3>
+<input type="file" id="fileInput" accept=".txt,.pdf">
 
-        <div class="progress-bar">
-            <div class="progress" id="progressBar"></div>
-        </div>
+<div class="char-count" id="charCount">0 characters</div>
 
-        <p id="statusText"></p>
-    </div>
+<div class="button-group">
+<button onclick="checkSimilarity()">Check</button>
+<button onclick="clearText()">Clear</button>
+</div>
+
+<div class="result" id="resultBox">
+<h3 id="scoreText"></h3>
+
+<div class="progress-bar">
+<div class="progress" id="progressBar"></div>
+</div>
+
+<p id="statusText"></p>
+
+<div id="matchesBox"></div>
+</div>
 
 </div>
 
 <script>
 // Character counter
 document.getElementById("projectInput").addEventListener("input", function() {
-    let count = this.value.length;
-    document.getElementById("charCount").innerText = count + " characters";
+let count = this.value.length;
+document.getElementById("charCount").innerText = count + " characters";
 });
 
-// Clear text
+// Clear
 function clearText() {
-    document.getElementById("projectInput").value = "";
-    document.getElementById("charCount").innerText = "0 characters";
-    document.getElementById("resultBox").style.display = "none";
+document.getElementById("projectInput").value = "";
+document.getElementById("fileInput").value = "";
+document.getElementById("charCount").innerText = "0 characters";
+document.getElementById("resultBox").style.display = "none";
 }
 
-// Similarity check (demo)
-function checkSimilarity() {
-    let text = document.getElementById("projectInput").value;
+// Main function
+async function checkSimilarity() {
+let text = document.getElementById("projectInput").value;
+let file = document.getElementById("fileInput").files[0];
 
-    if (text.trim() === "") {
-        alert("Enter project description!");
-        return;
-    }
+if (text.trim() === "" && !file) {
+alert("Enter text OR upload a file!");
+return;
+}
 
-    let score = Math.floor(Math.random() * 100);
+let formData = new FormData();
 
-    document.getElementById("resultBox").style.display = "block";
+if (file) {
+formData.append("file", file);
+} else {
+formData.append("text", text);
+}
 
-    document.getElementById("scoreText").innerText =
-        "Similarity Score: " + score + "%";
+try {
+let response = await fetch("http://localhost:5000/check", {
+method: "POST",
+body: formData
+});
 
-    let progressBar = document.getElementById("progressBar");
-    progressBar.style.width = score + "%";
-    progressBar.innerText = score + "%";
+let data = await response.json();
 
-    let statusText = document.getElementById("statusText");
+document.getElementById("resultBox").style.display = "block";
 
-    if (score > 70) {
-        statusText.innerText = "⚠ High Collision Detected";
-        statusText.style.color = "#ff4d4d";
-    } else if (score > 40) {
-        statusText.innerText = "⚡ Moderate Similarity";
-        statusText.style.color = "#ffd633";
-    } else {
-        statusText.innerText = "✅ Unique Project";
-        statusText.style.color = "#00ff99";
-    }
+// Score
+document.getElementById("scoreText").innerText =
+"Similarity Score: " + data.score + "%";
+
+let progressBar = document.getElementById("progressBar");
+progressBar.style.width = data.score + "%";
+progressBar.innerText = data.score + "%";
+
+// Status
+let statusText = document.getElementById("statusText");
+
+if (data.score > 70) {
+statusText.innerText = "⚠ High Collision Detected";
+statusText.style.color = "#ff4d4d";
+} else if (data.score > 40) {
+statusText.innerText = "⚡ Moderate Similarity";
+statusText.style.color = "#ffd633";
+} else {
+statusText.innerText = "✅ Unique Project";
+statusText.style.color = "#00ff99";
+}
+
+// Matches
+let matchesBox = document.getElementById("matchesBox");
+matchesBox.innerHTML = "<h4>Similar Projects:</h4>";
+
+data.matches.forEach(title => {
+matchesBox.innerHTML += "<p>• " + title + "</p>";
+});
+
+} catch (error) {
+alert("Server error");
+console.log(error);
+}
 }
 </script>
 
 </body>
-</html> 
+</html>
