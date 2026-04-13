@@ -1,60 +1,49 @@
-from flask import Flask, request, render_template
-from sentence_transformers import SentenceTransformer
-from sklearn.metrics.pairwise import cosine_similarity
-from pymongo import MongoClient
+from flask import Flask, render_template, request
+import json
+from sentence_transformers import SentenceTransformer, util
 
 app = Flask(__name__)
 
 # Load model
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
-# MongoDB connection
-client = MongoClient("mongodb://localhost:27017/")
-db = client["projectDB"]
-collection = db["projects"]
+# Load dataset
+with open('data/projects.json') as f:
+    projects = json.load(f)
 
-THRESHOLD = 0.8
-
-def get_similarity(input_text, db_texts):
-    input_embedding = model.encode([input_text])
-    db_embeddings = model.encode(db_texts)
-    return cosine_similarity(input_embedding, db_embeddings)[0]
-
-@app.route("/", methods=["GET", "POST"])
+@app.route('/')
 def index():
+    return render_template('index.html')
+
+@app.route('/check', methods=['POST'])
+def check():
+    user_title = request.form['title']
+    user_abstract = request.form['abstract']
+
+    user_text = user_title + " " + user_abstract
+
     results = []
-    warning = None
 
-    if request.method == "POST":
-        title = request.form["title"]
-        abstract = request.form["abstract"]
-        description = request.form["description"]
+    for project in projects:
+        db_text = project['title'] + " " + project['abstract']
 
-        input_text = abstract + " " + description
+        score = util.cos_sim(
+            model.encode(user_text),
+            model.encode(db_text)
+        )
 
-        projects = list(collection.find())
-
-        if projects:
-            db_texts = [p["abstract"] + " " + p["description"] for p in projects]
-            scores = get_similarity(input_text, db_texts)
-
-            for i, score in enumerate(scores):
-                results.append({
-                    "title": projects[i]["title"],
-                    "score": round(float(score), 2)
-                })
-
-                if score > THRESHOLD:
-                    warning = "⚠️ Similar project exists!"
-
-        # Save project
-        collection.insert_one({
-            "title": title,
-            "abstract": abstract,
-            "description": description
+        results.append({
+            "title": project['title'],
+            "score": float(score)
         })
 
-    return render_template("index.html", results=results, warning=warning)
+    # Sort by similarity
+    results.sort(key=lambda x: x['score'], reverse=True)
 
-if __name__ == "__main__":
+    # Top 5 results
+    top_results = results[:5]
+
+    return render_template('index.html', results=top_results)
+
+if __name__ == '__main__':
     app.run(debug=True)
