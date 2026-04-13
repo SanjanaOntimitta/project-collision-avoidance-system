@@ -1,117 +1,109 @@
-/* Google Font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-/* General */
+/* Background */
 body {
-    font-family: 'Poppins', sans-serif;
     margin: 0;
-    background: linear-gradient(-45deg, #667eea, #764ba2, #6a11cb, #2575fc);
-    background-size: 400% 400%;
-    animation: gradientBG 10s ease infinite;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Background animation */
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* Main container */
+.container {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 15px;
+    width: 420px;
+    color: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
 }
 
 /* Header */
 .header {
+    position: absolute;
+    top: 20px;
+    font-size: 20px;
+    font-weight: bold;
     color: white;
-    padding: 20px;
-    text-align: center;
-    font-size: 24px;
-    font-weight: 600;
-    letter-spacing: 1px;
-}
-
-/* Glass Container */
-.container {
-    width: 50%;
-    margin: 40px auto;
-    padding: 30px;
-    border-radius: 20px;
-
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(15px);
-    box-shadow: 0px 10px 40px rgba(0,0,0,0.2);
-
-    color: white;
-}
-
-/* Title */
-h2 {
-    margin-bottom: 15px;
 }
 
 /* Textarea */
 textarea {
     width: 100%;
-    height: 140px;
-    padding: 12px;
-    border-radius: 12px;
+    height: 110px;
+    border-radius: 10px;
     border: none;
-    outline: none;
-    font-size: 14px;
+    padding: 10px;
     resize: none;
+    font-size: 14px;
 }
 
-/* Character counter */
+/* File input */
+input[type="file"] {
+    margin-top: 10px;
+    color: white;
+}
+
+/* Character count */
 .char-count {
-    text-align: right;
     font-size: 12px;
     margin-top: 5px;
-    opacity: 0.8;
+    color: #ddd;
 }
 
 /* Buttons */
 .button-group {
-    display: flex;
-    gap: 10px;
+    text-align: center;
+    margin-top: 15px;
 }
 
 button {
-    margin-top: 15px;
-    padding: 12px;
-    flex: 1;
+    padding: 10px 20px;
     border: none;
-    background: #ffffff;
-    color: #333;
     border-radius: 10px;
+    margin: 5px;
     cursor: pointer;
-    font-weight: 500;
-    transition: 0.3s;
+    font-weight: bold;
 }
 
-button:hover {
-    background: #ddd;
+/* Check button */
+button:first-child {
+    background: white;
+    color: black;
 }
 
-/* Result */
+/* Clear button */
+button:last-child {
+    background: lightgray;
+}
+
+/* Result box */
 .result {
-    margin-top: 25px;
+    margin-top: 20px;
     display: none;
-    text-align: center;
 }
 
-/* Progress Bar */
+/* Progress bar (optional if used) */
 .progress-bar {
-    height: 22px;
-    background: rgba(255,255,255,0.3);
-    border-radius: 20px;
+    width: 100%;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
     overflow: hidden;
-    margin-top: 15px;
+    margin: 10px 0;
 }
 
 .progress {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    height: 20px;
+    background: #00ff99;
     text-align: center;
-    line-height: 22px;
-    color: white;
-    border-radius: 20px;
-    transition: width 1s ease-in-out;
+    color: black;
+    font-size: 12px;
+}
+
+/* Matches styling */
+#matchesBox p {
+    margin: 8px 0;
+    line-height: 1.5;
 }
