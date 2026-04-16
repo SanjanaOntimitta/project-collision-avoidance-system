@@ -11,7 +11,7 @@ app = Flask(__name__)
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
 # 🔥 LOWER THRESHOLD (MAIN FIX)
-THRESHOLD = 0.35
+THRESHOLD = 0.25
 
 
 # ---------------- CLEAN TEXT ----------------
@@ -87,7 +87,7 @@ def check():
         return jsonify({"results": []})
 
     # 🔥 CLEAN INPUT
-    combined = clean(text + " " + abstract)
+    combined = clean((text + " " + abstract) * 2)
 
     user_embedding = model.encode([combined])
 
