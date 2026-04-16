@@ -1,288 +1,288 @@
 [
     {
         "id": 1,
+        "title": "an all-in-one",
+        "abstract": "ed budget. By integrating platform to ass; assist trav: i"
+    },
+    {
+        "id": 2,
+        "title": ". eraesetiealreelly Saaeten les that allows users to write, compile, and run Python",
+        "abstract": "system, Th y in a web browser. Users do not need to install Python or any software on their sm. They can simply open the website, write Python code, and execute it online. The application takes Python code as input, sends it to the server for execution, and displays the output or error messages on the same web page. This system is especially useful for students, beginners, and learners who want to practice Python programming anytime and anywhere using a"
+    },
+    {
+        "id": 3,
+        "title": "Memes have b ;",
+        "abstract": "| ecome a popular and powerful way of expressing ideas, emotions, and humor on social media platforms. Creating memes manually using image editing tools can be time-consuming and requires technical skills. The Meme Generator App using Flask is"
+    },
+    {
+        "id": 4,
+        "title": "Splitting expenses |",
+        "abstract": "sina i i ee | group Is often difficult during trips, shared rooms, or g Sore ; , OF group events. When manually, it may ca ion, m \u2018 use confusion, mistakes"
+    },
+    {
+        "id": 5,
+        "title": "yf neonveni",
+        "abstract": "Mail D i Spam etection System that works across different operating systems such as Android and iOS."
+    },
+    {
+        "id": 6,
         "title": "The Breakout Ball Game is a classic arcade game in which the player controls a paddle at the bottom",
         "abstract": "of the screen to bounce a ball that hits and destroys bricks arranged at the top. The main objective is to break all the bricks while preventing the ball from falling off the screen. The player has to move the paddle left or right to keep the ball in play and clear the screen of bricks. Key interactions within the game include starting a new game, moving the paddle, pausing the game, and resuming it after a pause. The game also includes end conditions: the game ends with a \"Game Over\" if the player runs"
     },
     {
-        "id": 2,
+        "id": 7,
         "title": "E-commerce provides an easy way to sell products to a large customer base. However, there",
         "abstract": "is a lot of competition among multiple e-commerce sites. When users land on an e- commerce site, they expect to find what they are looking for quickly and easily. Also, users are not sure about the brands or the actual products they want to purchase. They have a very broad idea about what they want to buy. The challenge is also that each category will have a different set of facets to be displayed. For a better decision making, the customer is used"
     },
     {
-        "id": 3,
+        "id": 8,
         "title": "has become more accessible than ever, with an abundance of books available",
-        "abstract": "in both physical and digital formats. However, while reading fosters knowledge acquisition and intel- lectual erowth, retaining and organizing insights from these books remains a challenge for many read- ers, Often, key takeaways, reflections, or important passages are forgotten shortly after finishing a book. To address this issue, the *Book Notes* web application offers a robust solution for creating, managing, and retrieving notes from books ina structured and intuitive manner."
+        "abstract": "in both physical and digital formats. However, while reading fosters knowledge acquisition and intel- lectual erowth, retaining and organizing insights from these books remains a challenge for many read- ers, Often, key takeaways, reflections, or important passages are forgotten shortly afler finishing a book. To address this issue, the *Book Notes* web application offers a robust solution for creating, managing, and retrieving notes from books ina structured and intuitive manner."
     },
     {
-        "id": 4,
+        "id": 9,
         "title": "This project focuses on developing an innovative web-based platform designed to simplify the process",
         "abstract": "of booking hostels within a college campus. The system provides a centralized solution where students can browse available hostel accommodations, check real-time room availability, and make bookings seamlessly. The platform offers a structured approach to hostel management by integrating essential features such as room categorization and facility comparisons. To enhance user convenience, a booking history module that allows students to track their reservations. Administrators have access to"
     },
     {
-        "id": 5,
+        "id": 10,
         "title": "In the fast-paced modern era, achieving a balance between professional",
         "abstract": "responsibilities and personal fitness is a challenge for many. FitSync is a dynamic web platform designed to bridge the gap between fitness and daily work schedules. By seamlessly integrating workout routines into users\u2019 everyday lives, FitSyne encourages a holistic approach to health and productivity. It provides intelligent scheduling, personalized fitness recommendations, and data-driven insights, enabling"
     },
     {
-        "id": 6,
+        "id": 11,
         "title": "Echocelebrate is a user-friendly platform that allows users to create personalized video",
         "abstract": "greetings and montages for special occasions like birthdays, weddings, and anniversaries. Its intuitive interface and drag-and-drop functionality make video creation simple and enjoyable, even for those without technical experience. The platform offers a variety of customizable templates, allowing users to tailor their videos with personal messages, photos, and music, creating a unique tribute for any celebration. One of the standout features of Echocelebrate is the ability to invite"
     },
     {
-        "id": 7,
+        "id": 12,
         "title": "The Supermarket Billing System is a software application designed to",
         "abstract": "streamline the checkout process in supermarkets by automating the generation of bills and managing inventory. This system aims to reduce human error, increase efficiency, and provide accurate billing for customers. It allows cashiers to scan product barcodes, automatically fetch item details such as price and quantity from the database, and calculate the total bill,"
     },
     {
-        "id": 8,
+        "id": 13,
         "title": "The Personal Expense Tracker is a user-friendly application designed to help individuals manage",
         "abstract": "their financial activities efficiently. This project focuses on enabling users to track their income, expenses, and savings while providing insights into their spending habits. The application allows users to categorise transactions, set monthly budgets, and monitor their progress in achieving"
     },
     {
-        "id": 9,
+        "id": 14,
         "title": "Sous Chef is a versatile and intuitive web application designed to transform the way",
         "abstract": "individuals approach cooking. By focusing on the ingredients users already have on hand, it takes the guesswork out of meal preparation and introduces a new level of convenience to the kitchen. This innovative platform not only helps reduce food waste but also saves time and fosters culinary creativity by inspiring users to try new recipes and techniques. The application\u2019s core functionality revolves around its ability to generate personalized recipe"
     },
     {
-        "id": 10,
+        "id": 15,
         "title": "Dietary Navigator is a comprehensive web-based application designed to offer personalized",
         "abstract": "meal plans and dietary recommendations for individuals managing chronic health conditions such as diabetes, thyroid disorders, hypertension, obesity, and digestive issues. Built with Flask and SQLAIchemy, it leverages real-time nutritional databases to generate condition-specific meal plans and track macronutrients\u2014including carbohydrates, proteins, fats, and calories\u2014 helping users monitor their dietary intake and progress toward health goals. The platform"
     },
     {
-        "id": 11,
+        "id": 16,
         "title": "This document presents the development of the Online Quiz Portal, a dynamic, scalable, and user-",
         "abstract": "centric web-based platform meticu lously designed for the creation, administration, sharing, and participation in quizzes, The system is engineered to accommodate a diverse audience \u2014including educational institutions"
     },
     {
-        "id": 12,
+        "id": 17,
         "title": "Traveling alone can often feel daunting and isolating. The Travel Companion Finder project",
         "abstract": "is designed to help solo travelers find suitable companions based on shared travel plans, preferences, and destinations. This system allows users to register and log in securely. After logging in, users can input their travel details such as travel dates, destination, places to visit, and preferences like traveling solo, in a group, or as a couple. Based on these inputs, the"
     },
     {
-        "id": 13,
+        "id": 18,
         "title": "In today\u2019s globalized world, effective multilingual communication is crucial for seamless",
         "abstract": "collaboration across diverse linguistic backgrounds. This project proposes a Real-Time Language Translation System that enables instant and accurate translation of written text across multiple languages. Leveraging Natural Language Processing (NLP) techniques and using the Deep Translator API, the system performs real-time text-to-text translation"
     },
     {
-        "id": 14,
+        "id": 19,
         "title": "The Smart Travel Organiser is a web-based application designed to simplify and personalize",
         "abstract": "the process of travel planning for users based in India. It allows users to generate complete trip itineraries based on their budget, travel preferences, and duration of travel. By leveraging predefined destination data and rule-based logic, the system recommends places to visit, transportation options, accommodation suggestions, and local dining spots \u2014 all while"
     },
     {
-        "id": 15,
+        "id": 20,
         "title": "This project presents a Stock Price Prediction Web Application that forecasts future stock",
         "abstract": "prices using deep learning models. The application is built with FastAPI as the backend framework and TensorFlow for machine learning model development. It automatically retrieves historical stock data from Yahoo Finance through the yfinance library. The collected data is preprocessed using MinMaxScaler, normalizing the values before feeding them into a Long Short-Term Memory (LSTM) neural network model."
     },
     {
-        "id": 16,
+        "id": 21,
         "title": "The Al-Powered Medical Diagnosis Assistant is a robust and scalable healthcare solution",
         "abstract": "aimed at enhancing medical decision-making by providing real-time diagnostic support to healthcare professionals. The system leverages machine learning algorithms to analyze clinical data"
     },
     {
-        "id": 17,
+        "id": 22,
         "title": "ieee ee limit the independence and freedom of individuals who are",
-        "abstract": "fail to address the 5 Pp ae impaired, While several navigation systems exist today, they largely developed op an rat ic accessibility heeds of such users. The Mobility Assistant App has been Sechelt ovative solution to bridge this critical gap. It is a real-time mobile application : provide accessible route navigation, public transport assistance, emergency support, and"
+        "abstract": "fail to address the 5 P aie impaired, While several navigation systems exist today, they largely developed on an oe ic accessibility heeds of such users. The Mobility Assistant App has been Sechelt ovative solution to bridge this critical gap. It is a real-time mobile application : provide accessible route navigation, public transport assistance, emergency support, and"
     },
     {
-        "id": 18,
+        "id": 23,
         "title": "The Real-Time Financial Planner project is a comprehensive tool designed to assist individuals in",
         "abstract": "managing their finances by providing calculations and planning for key financial aspects such as Equated Monthly Installment (EMD), and Systematic Investment Plan (SIP)."
     },
     {
-        "id": 19,
+        "id": 24,
         "title": "The goal of this project is to build a highly interactive and engaging alarm clock web application that",
         "abstract": "not only wakes users up but also ensures they are mentally alert by the time the alarm is dismissed. Unlike traditional alarms that can be easily snoozed or turned off without requiring any mental effort, this application introduces a unique approach to morning routines. Users will have the option to set a custom alarm time and, if desired, also set a bedtime. Based on these inputs, the application will automatically calculate and display the total sleep duration, helping users maintain healthier sleep"
     },
     {
-        "id": 20,
+        "id": 25,
         "title": "In today's fast-paced digital age, timely and relevant information is crucial for making daily",
         "abstract": "decisions. From planning outdoor activities to staying updated with global developments, access to real-time weather and news data has become a necessity. The proposed chatbot is designed to function as a fast and reliable tool, delivering real-time weather updates and the latest news headlines to users in an intuitive and engaging conversational format. It aims to enhance user experience by providing timely information with ease, allowing users to stay informed on both"
     },
     {
-        "id": 21,
+        "id": 26,
         "title": "The Project \u2018BRAINY KIDS' nurtures young minds, improving IQ and boosting cognitive skills for",
         "abstract": "children aged 6-12 .The game\u2019s real-time feedback is to make children know how permutations wor k and encourages them to actively adjust their strategies, while the multiplayer format facilitates interaction between players, allowing them to practice social skills, such as taking tums, communicating effectively, and strategizing together"
     },
     {
-        "id": 22,
+        "id": 27,
         "title": "The Hospital Chatbot is an advanced, interactive desktop application developed using Java Swing,",
         "abstract": "designed to streamline and simplify the hospital appointment process through a user-friendly chatbot interface. The system enables patients to seamlessly interact with the chatbot to perform vital functions such as viewing available doctors, booking new appointments, and cancelling or modifying existing ones. Supporting multiple hospitals, each with their unique set of specialized doctors, the chatbot aims to enhance healthcare accessibility and reduce administrative overhead by automating"
     },
     {
-        "id": 23,
+        "id": 28,
         "title": "This project focuses on the design and implementation of a Memory Card Game using Java Swing, a",
         "abstract": "widely-used toolkit for building graphical user interfaces in Java. The game is a classic concentration puzzle where the player's objective is to match pairs of cards hidden within a grid. It is designed to test and enhance the user's memory, attention, and pattern recognition skills in a fun and interactive environment."
     },
     {
-        "id": 24,
-        "title": "In today's digital landscape, strong passwords are essential for safeguarding online",
+        "id": 29,
+        "title": "in today's digital landscape, strong passwords are essential for safeguarding online",
         "abstract": "accounts and sensitive information. This project presents a web-based password generator developed using HTML, CSS, and JavaScript. The application is designed to provide users with a simple, intuitive interface that facilitates the creation of robust passwords based on customizable criteria. Users can specify the desired password length\u2014ranging from a minimum of 4 to a maximum of 30 characters\u2014to suit varying"
     },
     {
-        "id": 25,
+        "id": 30,
         "title": "Buildings and structures are prone to various wall defects such as cracks, dampness, and peeling over",
         "abstract": "time due to environmental and material factors. Traditional inspection methods for identifying these defects are time-consuming, subjective, and prone to human error. To address these challenges, we developed DefecScan, an Al-powered web application designed to automate and enhance the wall defect detection process."
     },
     {
-        "id": 26,
+        "id": 31,
         "title": "This project developed in Java provides users with a two-game platform consisting of two popular",
         "abstract": "games: Snake Water Gun and Tic Tac Toe. Created with AWT and Swing, it provides users with an interactive and user-friendly GUI, showcasing the future of Java for lightweight game development. The user gets welcomed by a welcome screen with buttons to select from the two games:"
     },
     {
-        "id": 27,
+        "id": 32,
         "title": "The Sign Language Detector aims to bridge communication gaps between hearing-impaired",
         "abstract": "individuals and the broader community by recognizing hand gestures and translating them into text or speech. Using Python and advanced computer vision techniques, the system captures gestures in real- time, processes the visual data, and identifies predefined sign language gestures with high accuracy."
     },
     {
-        "id": 28,
+        "id": 33,
         "title": "The INTERACTIVE SLOT MACHINE is a Python-based desktop gaming application that",
         "abstract": "provides users with an immersive casino experience through a highly interactive and graphically enriched interface. Designed using Tkinter for the GUI and SQLite for database management, the project integrates core functionalities of a slot machine with modern usability features. The system is tailored to support user-friendly interactions, including the ability to register with a unique Player"
     },
     {
-        "id": 29,
+        "id": 34,
         "title": "Morse code, a symbolic communication method dating back to the 19th century, continues to",
         "abstract": "play a critical role in specialized fields such as aviation, maritime communication, and emergency signaling. This project focuses on the development of a Morse Code Converter, an application designed to encode text into Morse code and decode Morse signals back into text. The primary objective of this project is to provide a simple, accessible, and efficient tool for Morse code translation, catering to both enthusiasts and professionals. Additional features like audio playback"
     },
     {
-        "id": 30,
+        "id": 35,
         "title": "The program is a versatile text tool application developed using Python's Tkinter library, designed to simplify",
         "abstract": "and enhance user interaction with text, audio, and language translation. By integrating several powerful features into a single, user-friendly interface, it serves as an invaluable resource for students, professionals, and anyone who frequently works with text."
     },
     {
-        "id": 31,
+        "id": 36,
         "title": "This project introduces a web-based MBTI (Myers-Briggs Type Indicator) personality tester",
         "abstract": "designed to classify users into one of sixteen personality types based on their responses to structured psychological questions. Rooted in the theories of Carl Jung and further developed by Isabel Briggs Myers and Katharine Cook Briggs, the test evaluates users across four key dichotomies: Introversion/Extraversion, Sensing/Intuition, Thinking/Feeling, and Judging/Perceiving."
     },
     {
-        "id": 32,
-        "title": "wae ee project using BeautitilSoup aims (o automate the extraction of specific data from",
-        "abstract": "Python's re ec ves headlines, product prices, or any other publicly available content, By utilizing chtecivals quests oot to teteh web pages and BeautilulSoup to parse the HTML content, the script required Saeed structured information from the page, which can then be stored or processed as . The primary advantage of web scraping is the ability to quickly gather large amounts of data"
+        "id": 37,
+        "title": "sae eee project using BeautitilSoup aims (o automate the extraction of specific data from",
+        "abstract": "Python's re ec ens headlines, product prices, or any other publicly available content, By utilizing chtecivals quests oa to tetch web pages and BeautilulSoup to parse the HTML content, the script required Sainte structured information from the page, which can then be stored or processed as . The primary advantage of web scraping is the ability to quickly gather large amounts of data"
     },
     {
-        "id": 33,
+        "id": 38,
         "title": "The \"Chronic Disease Predictor\" project involves the design and implementation of",
         "abstract": "a web-based medical diagnostic tool using Python and machine learning technologies. The system utilizes a Random Forest Classifier to predict potential chronic diseases based on patient health metrics such as blood test parameters and other medical indicators. The system automates the analysis of medical data, simplifying the diagnostic process and providing quick initial assessments. The main objective is to assist healthcare professionals by"
     },
     {
-        "id": 34,
+        "id": 39,
         "title": "The project titled \u201cT20 Match Outcome Prediction Using Machine Learning\u201d presents a",
         "abstract": "comprehensive approach to real-time cricket match analytics through the application of modern machine leaming techniques. With the explosion of data in the sports industry, particularly in cricket, there has been a rapid surge in interest towards predictive modeling to assess and forecast match outcomes. This project attempts to harness the power of historical and real-time match data to build a system capable of predicting the winner of a T20 cricket match during its progression,"
     },
     {
-        "id": 35,
+        "id": 40,
         "title": "BlockShift is well known as \u201cTetris\u201d, a timeless puzzle game, is more than just an entertaining",
-        "abstract": "pastime\u2014it is a powerful tool for enhancing cognitive skills, improving IQ, and promoting mental well-being. This project explores the development of a Tetris game using Python's P yGame library, recreating the classic gameplay experience where players arrange falling tetromino blocks to form complete horizontal rows and score points. The game demands logic, timing, and spatial awareness, making it beneficial for people of all age groups. Tetris is not just a game; it has been widely"
+        "abstract": "pastime\u2014it is a powerful tool for enhancing cognitive skills, improving IQ, and promoting mental well-being. This project explores the development of a Tetris game using Python's PyGame library, recreating the classic gameplay experience where players arrange falling tetromino blocks to form complete horizontal rows and score points. The game demands logic, timing, and spatial awareness, making it beneficial for people of all age groups. Tetris is not just a game; it has been widely"
     },
     {
-        "id": 36,
+        "id": 41,
         "title": "This project develops an intelligent multilingual chatbot that supports seamless conversation",
         "abstract": "in Telugu and English languages. It integrates chatbot interaction, AT-powered translation, and text summarization functionalities using Streamlit and Google's Gemini 1.5 Pro API. The chatbot dynamically detects the input language and responds appropriately using a pre-curated dataset and advanced AI models."
     },
     {
-        "id": 37,
+        "id": 42,
         "title": "The Grocery Expiry Tracker is a smart inventory management system designed to help",
         "abstract": "individuals and households monitor the expiry dates of grocery items, thereby reducing food waste and promoting healthier consumption habits. The system allows users to input groceries manually or"
     },
     {
-        "id": 38,
+        "id": 43,
         "title": "MyStudyLife is a student schedule management project designed to help students balance academics,",
-        "abstract": "extracurricular activities, and personal commitments. It provides an intuitive platform for creating personalized schedules, tracking tasks, and optimizing time to reduce stress and improve productivity,"
+        "abstract": "extracurricular activities, and personal commitments. It provides an intuitive platform for creating personalized schedules, tracking tasks, and optimizing time to reduce stress and improve productivity."
     },
     {
-        "id": 39,
+        "id": 44,
         "title": "Quiz Application is an interactive web-based platform designed to enhance learning through",
-        "abstract": "engaging quiz formats. The application enables users to explore and attempt multiple choice quizzes across various subjects and difficulty levels It features a user-friendly interface with functionalities such as user authentication. Performance tracking, and leaderboard rankings to promote competitive learning. The platform supports responsive design, ensuring accessi- bility across devices and enabling learning anytime, anywhere. With scalability in mind, the"
+        "abstract": "engaging quiz formats. The application cnables users to explore and attempt multiple choice quizzes across various subjects and difficulty levels It features a user-friendly interface with functionalities such as user authentication. Performance tracking, and leaderboard rankings to promote competitive learning. The platform supports responsive design, ensuring accessi- bility across devices and enabling learning anytime, anywhere. With scalability in mind, the"
     },
     {
-        "id": 40,
+        "id": 45,
         "title": "This project focuses on building a web-based platform to automate the resume screening",
         "abstract": "process for recruiters and HR professionals. The system allows users to upload resumes in formats like PDF, DOCX, and TXT, and applies smart filters based on criteria such as skills, education, ex- perience, and location. By extracting and organizing key information from resumes, it aims to re- duce manual effort and improve the efficiency and accuracy of candidate selection."
     },
     {
-        "id": 41,
-        "title": ":",
-        "abstract": "The Automated Email System project aims to design and implement an efficient, scalable, and user- friendly system that automatically sends personalized or scheduled emails without manual intervention. This system leverages SMTP protocols to send emails from a defined email account to multiple recipients based on predefined triggers or scheduled times. The system is highly"
-    },
-    {
-        "id": 42,
-        "title": "mong all",
-        "abstract": "food Food is one of the basic necessities of humans, and it stands first a basic needs. With the rising population and development of this country,"
-    },
-    {
-        "id": 43,
+        "id": 46,
         "title": "The Employee Management System is a web-based application developed to streamline",
-        "abstract": "and manage employee data efficiently. This system is designed using HTML and CSS for the frontend interface, offering a clean and user-friendly design. The backend is powered by Java Servlets and JDBC, facilitating seamless interaction with a SQL database for data storage and retrieval, The current implementation focuses solely on the user module, allowing basic functionalities such as employee registration, login, profile viewing, and updating personal"
+        "abstract": "and manage employee data efficiently. This system is designed using HTML and CSS for the frontend interface, offering a clean and user-friendly design. The backend is powered by Java Servlets and JDBC, facilitating seamless interaction with a SQL database for data storage and retrieval. The current implementation focuses solely on the user module, allowing basic functionalities such as employee registration, login, profile viewing, and updating personal"
     },
     {
-        "id": 44,
+        "id": 47,
         "title": "The Railway Management System is a modern computer application created to help improve",
         "abstract": "how railway operations are handled. This project mainly focuses on automating important tasks like ticket booking, train schedule updates, storing passenger details, and supporting staff in managing the system."
     },
     {
-        "id": 45,
+        "id": 48,
         "title": "Event Management System is an online EMS software which serves functionality of an event",
         "abstract": "manager. This platform simplifies ticket booking for events in Hyderabad by providing a user- friendly interface for exploring ongoing and upcoming events, including concerts, workshops, and cultural festivals. It displays key event details such as venue, date, time, ticket price, and availability, helping users make informed decisions and easily secure tickets. With expansion"
     },
     {
-        "id": 46,
+        "id": 49,
         "title": "Stock Trend Analyzer is a lightweight web application used to help users track and analyze stock",
         "abstract": "market trends with ease. Through the real-time financial information from the Alpha Vantage API, the system allows users to search for a stock symbol, get detailed information about the stock such as open, high, low, and close prices, and see past price movements as dynamic charts."
     },
     {
-        "id": 47,
+        "id": 50,
         "title": "The Password Generator System is a web-based application designed to help users create strong, secure, and",
         "abstract": "random passwords, This platform aims to improve online security by offering an easy-to-use tool for generating passwords that meet modern security standards. The system allows users to customize their password strength and complexity, ensuring that passwords are difficult to guess or crack."
     },
     {
-        "id": 48,
+        "id": 51,
         "title": "AnyShare is a lightweight and efficient web-based file sharing platform",
         "abstract": "designed to simplify the process of transferring files between users. The system enables users to upload a file, after which a unique code is generated and stored along with the file link in a secure MongoDB database. This code acts as a key for the receiver to access and download the corresponding file."
     },
     {
-        "id": 49,
+        "id": 52,
         "title": "This project presents a real-time face and eye detection system utilizing the OpenCV library in",
         "abstract": "Python, The system captures video streams from a webcam and processes each frame to detect faces and eyes, highlighting them with bounding rectangles. Leveraging pre-trained Haar cascade classifiers, the implementation demonstrates the application of fundamental computer vision techniques to achieve"
     },
     {
-        "id": 50,
+        "id": 53,
         "title": "This Pack Your Purse application aims to simplify the entire process by providing an all-in-one",
-        "abstract": "platform to assist travellers in organizing their trips within a specified budget. By integrating multiple functionalities, such as budget management, itinerary planning, and real-time recommendations, the system delivers a comprehensive solution for travel enthusiasts. The platform enables users to input essential travel parameters, including budget, the number of"
+        "abstract": "platform to assist travellers in organizing their trips within a specified budget. By integrating tmaultiple functionalities, such as budget management, itinerary planning, and real-time recommendations, the system delivers a comprehensive solution for travel enthusiasts. The platform enables users to input essential travel parameters, including budget, the number of"
     },
     {
-        "id": 51,
+        "id": 54,
         "title": "Farming is unpredictable, and soil health plays a crucial role in determining crop success. The Soil Monitoring",
         "abstract": "System is a smart web-based tool designed to help farmers track essential soil parameters like moisture levels, pH balance, temperature, and nutrient concentrations (NPK) in real time. Instead of relying on guesswork or time-consuming manual testing, farmers get instant insights that guide them in making the right decisions for urigation, fertilization, and crop management."
     },
     {
-        "id": 52,
+        "id": 55,
         "title": "The Health Monitoring System is a web-based application designed to empower users to",
         "abstract": "track vital signs such as heart rate, oxygen level, blood pressure, and activity level. The goal of the system is to enable early detection of health anomalies and proactive intervention by providing a simple, real-time, and accessible platform. This project utilizes Flask as the backend web framework and SQLite as the database to store and manage user and health data. Users can input health data manually or rely on a simulated data stream that emulates real-time input from"
     },
     {
-        "id": 53,
+        "id": 56,
         "title": "The Canteen Management System project proposes a digital solution to optimize and",
         "abstract": "automate the interaction between students, the college administration, and canteen services. ivIn many academic environments, canteen transactions are still handled using cash, leading to inefficiencies, manual errors, and a lack of transparency. This system aims to modernize these processes through the introduction of a prepaid wallet system, funded at the time of"
     },
     {
-        "id": 54,
-        "title": "The Grocery Expiry Tracker is a smart inventory management system designed to help",
-        "abstract": "individuals and households monitor the expiry dates of grocery items, thereby reducing food waste and promoting healthier consumption habits. The system allows users to input groceries manually or via barcode scanning, along with their expiry dates. It sends timely reminders and alerts for items nearing their expiration, enabling users to consume or discard products before they spoil. The tracker"
-    },
-    {
-        "id": 55,
-        "title": "The Grocery Expiry Tracker is a smart inventory management system designed to help",
-        "abstract": "individuals and households monitor the expiry dates of grocery items, thereby reducing food waste and promoting healthier consumption habits. The system allows users to input groceries manually or via barcode scanning, along with their expiry dates. It sends timely reminders and alerts for items - nearing their expiration, enabling users to consume or discard products before they spoil. The tracker can be implemented as a mobile or web application, incorporating features like categorization,"
-    },
-    {
-        "id": 56,
-        "title": "Quiz Application is an interactive web-based platform designed to enhance learning through",
-        "abstract": "engaging quiz formats. The application enables users to explore and attempt multiple choice quizzes across various subjects and difficulty levels It features a user-friendly interface with functionalities such as user authentication. Performance tracking, and leaderboard rankings to promote competitive learning. The platform supports responsive design, ensuring accessi- bility across devices and enabling learning anytime, anywhere. With scalability in mind, the"
-    },
-    {
         "id": 57,
-        "title": "MyStudyLife is a student schedule management project designed to help students balance academics,",
-        "abstract": "extracurricular activities, and personal commitments. It provides an intuitive platform for creating personalized schedules, tracking tasks, and optimizing time to reduce stress and improve productivity."
+        "title": "Event Management System is an online EMS software which serves functionality of an event",
+        "abstract": "manager. This platform simplifies ticket booking for events in Hyderabad by providing a user- friendly interface for exploring ongoing and upcoming events, including concerts, workshops, and cultural festivals. It displays key event details such as venue, date, time, ticket price, and availability, helping users make informed decisions and easily secure tickets. With expansion"
     },
     {
         "id": 58,
@@ -291,287 +291,232 @@
     },
     {
         "id": 59,
-        "title": ":",
-        "abstract": "The Autom: ; a nated Email System project aims to design and implement an efficient, scalable, and user- friend] ;"
-    },
-    {
-        "id": 60,
-        "title": "Food is one of the basic necessities of humans, and it stands first among all",
-        "abstract": "velopment of this country, food people who wish to donate"
-    },
-    {
-        "id": 61,
-        "title": "The Employee Management System is a web-based application developed to streamline",
-        "abstract": "and manage employee data efficiently. This system is designed using HTML and CSS for the frontend interface, offering a clean and user-friendly design. The backend is powered by Java Servlets and JDBC, facilitating seamless interaction with a SQL database for data storage and retrieval. The current implementation focuses solely on the user module, allowing basic functionalities such as employee registration, login, profile viewing, and updating personal"
-    },
-    {
-        "id": 62,
         "title": ". ae ated to help imp",
         "abstract": "The Railway Management System is a modem computer application cre : aks like i \u2018ng important tasks | railway operations are handled. This project mainly focuses on automating ime"
     },
     {
-        "id": 63,
-        "title": "Event Management System is an online EMS software which serves functionality of an event",
-        "abstract": "manager. This platform simplifies ticket booking for events in Hyderabad by providing a user- friendly interface for exploring ongoing and upcoming events, including concerts, workshops, and cultural festivals. It displays key event details such as venue, date, time, ticket price, and availability, helping users make informed decisions and easily secure tickets. With expansion"
+        "id": 60,
+        "title": "mans, and it stands first among all",
+        "abstract": "velopment of this country, food people who wish to donate Food is one of the basic necessities of hu"
     },
     {
-        "id": 64,
-        "title": "Stock ; \u2018",
-        "abstract": "oes lightweight web application used to help users track and analyze stoc market : API, th trends with ease. Through the real-time financial information from the ape h \u00a9 System allows users to search for a stock symbol, get detailed information about the stock suc"
+        "id": 61,
+        "title": "Quiz Application is an interactive web-based platform designed to enhance learning through",
+        "abstract": "engaging quiz formats. The application enables users to explore and attempt multiple choice quizzes across various subjects and difficulty levels It features a user-friendly interface with functionalities such as user authentication. Performance tracking, and leaderboard rankings to promote competitive learning. The platform supports responsive design, ensuring accessi- bility across devices and enabling learning anytime, anywhere. With scalability in mind, the"
     },
     {
-        "id": 65,
-        "title": "The Password Gencrator System is a web-based application designed to help users create strong, secure, and",
-        "abstract": "random passwords. This platform aims to improve online security by offering an easy-to-use tool for generating passwords that mect modern security standards. The system allows users to customize their password strength and complexity, ensuring that passwords are difficult to guess or crack."
-    },
-    {
-        "id": 66,
-        "title": "The Weather App is a web-based application that provides users with real-time weather updates for cities",
-        "abstract": "worldwide. By leveraging the Open Weather Map API, the app allows users to search for weather conditions in any location, displaying essential details such as temperature, humidity, wind speed, and weather description (e.g., sunny, rainy). It also features dynamic icons that visually represent different weather conditions, enhancing the user experience."
-    },
-    {
-        "id": 67,
-        "title": "AnyShare is a |;",
-        "abstract": "designed to ts lightweight and efficient web-based file sharing platform system ae ta the process of transferring files between users. The generated and a ei to upload a file, after which a unique code 1s database. This red along with the file link in a secure MongoDB"
-    },
-    {
-        "id": 68,
-        "title": "by providing an all-in-one",
-        "abstract": "ed budget. By integrating d real-time This Pack Your"
-    },
-    {
-        "id": 69,
-        "title": "~ Farming is unpredictable, and soil health plays a crucial role in determining crop success. The Soil Monitoring",
-        "abstract": "~y System is a smart web-based tool designed to help farmers track essential soil parameters like moisture levels, pH balance, temperature, and nutrient concentrations (NPK) in real time. Instead of relying on guesswork or 1 time-consuming manual testing, farmers get instant insights that guide them in making the right decisions for"
-    },
-    {
-        "id": 70,
-        "title": "o optimize and",
-        "abstract": "and canteen g cash, leading ThecC"
-    },
-    {
-        "id": 71,
+        "id": 62,
         "title": "The internet and social media are now fundamental components of how people disseminate",
         "abstract": "and receive information. Social media has changed considerably over time, and now roughly half of people use it to communicate their ideas and thoughts. The way that individuals communicate has changed substantially over the past ten years, partly as a result of social media\u2019s pervasive rise. It has made it possible for a world that is more connected and informed, but it has also given way to a brand-new phenomenon: poisonous speech."
     },
     {
-        "id": 72,
+        "id": 63,
         "title": "Mental health issues such academic pressure are increasing!",
-        "abstract": "affecting students. Many prolessional help duc to sti gma, lack of AaWarteness, Or unavailability of inmediate support This project proposes a Mental Health Chatbot that provides emotional support, basic COUNSE and mental health awareness to students through conversational interaction. The chatbot uses Natural Language Processing (NLP)"
+        "abstract": "affecting students. Many prolessional help duc to sti gma, lack of aWarteness, Or unavailability of immediate support This project proposes a Mental Health Chatbot that provides emotional support, basic COUNSE and mental health awareness to students through conversational interaction. The chatbot uses Natural Language Processing (NLP)"
     },
     {
-        "id": 73,
+        "id": 64,
         "title": "CampusMitra is a student-to-student utility platform designed to solve common campus problems",
         "abstract": "like the high cost of temporary resources, lost belongings, and the difficulty of finding reliable peer academic help. Unlike cluttered WhatsApp groups, this platform provides a structured environment where students can securely rent items\u2014like lab coats or calculators\u2014using an OTP-handshake system, and offer peer-to-peer tutoring. By requiring a college email for access, the platform ensures a high-trust, private community."
     },
     {
-        "id": 74,
+        "id": 65,
         "title": "The Bank Managen",
-        "abstract": "Cn | gement System (BMS) is a web-based application designed to modernize nd streamli i rati | re he core banking operations through an intuitive interface built with HTML an ims ici S. It aims to enhance the efficiency, accessibility, and overall experience of"
+        "abstract": "one | gement System (BMS) is a web-based application designed to modernize nd streamli i rati | re he core banking operations through an intuitive interface built with HTML an ims ici S. It aims to enhance the efficiency, accessibility, and overall experience of"
     },
     {
-        "id": 75,
-        "title": "taining a healthy lifestyle is increasingly difficult due to the rising consumption of processed",
-        "abstract": "oods and a lack of nutritional awareness. Traditional calorie counting methods often rely on manual data entry. which is time-consuming and prone to human error. This project proposes an intelligent solution: an Al-powered Calorie Counting Application that utilizes computer vision and deep learning to automate the process of nutritional tracking. By simpty capturing a photo of a meal, the system identifies food items. estimates portion sizes. and calculates total caloric"
+        "id": 66,
+        "title": "Maintaining a healthy lifestyle is j . 7",
+        "abstract": "foods - ee oe leis Aired, _\u2014 due to the rising consumption of processed titional awareness. Traditional calorie counting methods often rely on manual data entry, which is time-consuming and prone to human error. This project proposes an intelligent solution: an Al-powered Calorie Counting Application that utilizes computer vision and deep learning to automate the process of nutritional tracking. By simpxy capturing a photo of"
     },
     {
-        "id": 76,
-        "title": "7 (eo it, students are expected to manage their studies e\u20ac Vv",
-        "abstract": "collaborate with peers, and continuously improve their practical coding skills. How : ever, students often use multiple disconnected tools for task management, group coordination, and coding"
+        "id": 67,
+        "title": "7 ( it, students are expected to manage their studies e\u20ac Vv",
+        "abstract": "collaborate with peers, and continuously improve their practical coding skills. How . ever, students often use multiple disconnected tools for task management, group coordination, and coding"
     },
     {
-        "id": 77,
-        "title": ":",
-        "abstract": "In 2026, India\u2019s logistics and transportation sector continues to be a key contributor to economic growth, employing millions of people and supporting national development."
+        "id": 68,
+        "title": "ir pollution is one of the major environmental challenges affecting public health and",
+        "abstract": "ecological balance. Continuous monitoring and accurate prediction of air quality are essential for taking preventive measures and improving the quality of life. This project focuses on designing an Air Quality Monitoring and Prediction System using machine"
     },
     {
-        "id": 78,
-        "title": "Air pollution is one of the major environmental challenges affecting public health and",
-        "abstract": "ecological balance. Continuous monitoring and accurate prediction of air quality are essential for taking preventive measures and improving the quality of life. This project focuses on designing an Air Quality Monitoring and Prediction System using machine learning techniques."
-    },
-    {
-        "id": 79,
+        "id": 69,
         "title": "in today's fast-growing digital economy, businesses generate a massive amount of sales data through online",
         "abstract": "platforms, retail stores, and customer interactions. Effectively analyzing this data is essential for improving sales performance, understanding customer needs, and making strategic business decisions. However, traditional sales analysis techniques often fail to provide real-time insights, accurate predictions, and detailed performance evaluation, This limitation results in poor inventory planning, revenue loss, and reduced customer satisfaction."
     },
     {
-        "id": 80,
+        "id": 70,
         "title": "Event tickets for movies, sports, and concerts are often purchased in advance, but users may become",
         "abstract": "unavailable due to unforeseen circumstances. As a result, tickets either go unused or are resold through unofficial channels at inflated prices, leading to black marketing and unfair practices. This project proposes a web-based platform that allows users to resell their event tickets strictly at the original purchase price with an additional fixed platform fee. The system ensures fairness by enforcing price locking and preventing price manipulation. The platform includes ticket verification mechanisms, controlled resale workflows, and"
     },
     {
-        "id": 81,
+        "id": 71,
         "title": "The Live Location Based Person Safety System is designed to enhance personal security",
         "abstract": "by providing real-time location tracking and instant emergency alert mechanisms. This system enables users to share their live location with trusted contacts during critical g timely assistance and improved safety. It is especially useful for"
     },
     {
-        "id": 82,
-        "title": "The i i",
-        "abstract": "i cictesonl tmeineige ane a cee software application designed to help individuals t ; , analyze their daily financial transactions. In the modern digi , igital era, peels. of expenses manually can be time-consuming and error-prone, often paula to poor ann a anning. This system provides a structured and efficient solution to monitor income and"
+        "id": 72,
+        "title": "Nowadays. many people shop online using different platforms s",
+        "abstract": "\u2018here prices and offers for the same product may He peas as Amazon and Flipkart. consuming and confusing. This project, \u201cWeb-Based eral Nepean nia oui System\u201d. is developed to solve this problem by providing all offers ees web applica The system allows users to search for a product and view prices, discounts, and offers ailable"
     },
     {
-        "id": 83,
-        "title": "Nowadays. many people shop online using different platl",
-        "abstract": "where prices an d offers for the same podbenman ae arate as Amazon and T'lipkart. -onsuming an dcantasiog, Thistordjac: \u201cWesrnated y. buat: oe webuite Separately is time- system\u201d. \u201c5 developed to solve this problem by providing al ae ] rice Comparison The system allows users to search for a product and es oe \u00b0 = in one single web application. on multiple online platforms at the same time. It hel ws east conan areal a"
+        "id": 73,
+        "title": "The Employee Management System is a web-based application developed to streamline",
+        "abstract": "and manage employee data efficiently. This system is designed using HTML and CSS for the frontend interface, offering a clean and user-friendly design. The backend is powered by Java Servlets and JDBC, facilitating seamless interaction with a SQL database for data storage and retrieval. The current implementation focuses solely on the user module, allowing basic functionalities such as employee registration, login, profile viewing, and updating personal"
     },
     {
-        "id": 84,
-        "title": "My Campus Companion is an integrated campus management and student support system",
-        "abstract": "designed to enhance communication, accessibility, and efficiency within an educational ;nstitution. The project aims to provide a single digital platform that connects students, faculty, and administrators while simplifying day-to-day academic and campus activities."
+        "id": 74,
+        "title": "AnyShare is a |;",
+        "abstract": "designed to a lightweight and efficient web-based file sharing platform system ata the process of transferring files between users. The generated and 7 ge to upload a file, after which a unique code 1s database. This red along with the file link in a secure MongoDB"
     },
     {
-        "id": 85,
-        "title": "\u00b0 The internet and social media are now fundamental components of how peo J",
-        "abstract": "disseminate The rapid growth of social media and messaging platforms has a roved communication but also increased the spread of TOXIC and HARMFUL eae This project presents a web-based messenger application integrated with a toxic ) speech detection system that monitors messages in real time . The system automatically classifies messages as Toxic or Non-Toxic using Machine Learning"
+        "id": 75,
+        "title": "The Weather App is a web-based application that provides users with real-time weather updates for cities",
+        "abstract": "worldwide. By leveraging the Open Weather Map API, the app allows users to search for weather conditions in any location, displaying essential details such as temperature, humidity, wind speed, and weather description (e.g., sunny, rainy). It also features dynamic icons that visually represent different weather conditions, enhancing the user experience."
     },
     {
-        "id": 86,
-        "title": "affecting students nts hesi",
-        "abstract": "pace err S. Many students hesitate to seek professional help due to stigma, lack of vareness, or unavailability of immediate support ae This project proposes a Ment: project proposes a Mental Health Chatbot that provides emotional support, basic counseling"
+        "id": 76,
+        "title": "o optimize and",
+        "abstract": "The Cc anteen M anagemen t System project proposes 4 digital solution t"
     },
     {
-        "id": 87,
-        "title": "The Expense Tracker System i",
-        "abstract": "and monitor their daily a sel is @ web pased application designed to help users efficiently manage difficult to track their spending See eae In today\u2019s fast-paced lifestyle, individuals often find it sravidessa simale, reliable and'users y, wi ich may lead to poor financial planning. This system Feangaphone with details nae - ser trendy platform where users can record their financial Faerie a gonee Smersesiiito 7 category, amount, and description. The application allows"
-    },
-    {
-        "id": 88,
-        "title": "The Expense Tracker S$ i i",
-        "abstract": "; ystem is a user- icati j i effectively record, manage, ond aaieewers rer dole application designed to help individuals ree uneeeet expenses manvelly sen te foe Y financial pom in the madern digital era, ML oe : , : \u201cconsuming and error-prone, often leading to poor a, ae Wee system provides a structured and efficient solution to monitor income and"
-    },
-    {
-        "id": 89,
-        "title": "In recent years, monitoring and improving student academic performance has",
-        "abstract": "oe a major concern in educational institutions. Many students face difficulties in achieving academic success due to lack of proper guidance, early performance analysis, and personalized feedback. Traditional evaluedarr methods fail to identify learning gaps at an early stage, which may lead to poor"
-    },
-    {
-        "id": 90,
-        "title": "In today's fast-growing digital economy, businesses generate a massive amount of sales data through online",
-        "abstract": "platforms, retail stores, and customer interactions. Effectively analyzing this data is essential for improving sales performance, un 1 =. derstanding customer needs, and making strategic business decisions. However, traditional sales analysis techniques often fail to provide real-time insights, accurate predictions, and detailed performance"
-    },
-    {
-        "id": 91,
-        "title": "Online platforms continuously generate large volumes of dynamic content that reflect",
-        "abstract": "changing public interests and collective behaviour in real time. These patterns often manifest as trends that rise rapidly, gain widespread attention, and eventually decline. Understanding the progression of such trends is essential for analysing digital influence, information dissemination, and user engagement over time. The Online Trend Life Cycle Analyzer project focuses on systematically studying the evolution of online trends by identifying their distinct"
-    },
-    {
-        "id": 92,
-        "title": "With the rapid growth of e-commerce platforms, online sellers and bu",
-        "abstract": ". Yers increasingly rely on digital interactions to conduct transactions. While this has enhanced convenience and market reach, it has also raised concerns regarding trust, fraud, fake reviews, and unreliable"
-    },
-    {
-        "id": 93,
-        "title": "Nowadays, digital images are a main source of shared information in social media. Meanwhile,",
-        "abstract": "malicious software can forge such images for fake information. So, it\u2019s crucial to identify these forgeries. This problem was tackled in the literature by various digital image forgery detection techniques. But most of these techniques are tied to detecting only one type of forgery, such as image splicing or copy-move that is not applied in real life. This paper proposes an approach, to enhance digital image forgery detection using deep learning techniques via transfer learning to"
-    },
-    {
-        "id": 94,
-        "title": "vadays, unhealthy eati i",
-        "abstract": "= ee eee teen and lack of awareness about calorie intake have become major Sle eh ey seases Such as obesity, diabetes, and heart problems. Most peo is ut knowing its nutritional value, which leads to health imbalance ;"
-    },
-    {
-        "id": 95,
-        "title": "Credit card fraud has become a major concern due to the rapid growth of online and digital",
-        "abstract": "transactions. Detecting fraudulent transactions manually is difficult and time-consuming. This project proposes a Credit Card Fraud Detection System using machine learning techniques to identify suspicious transactions accurately and efficiently. The system analyzes historical transaction data and learns patterns that distinguish genuine transactions from fraudulent ones. Features such as transaction amount, time, and user behavior are used to train the model. When a"
-    },
-    {
-        "id": 96,
-        "title": "-to-student uti ity i V on campu problem",
-        "abstract": "S e peer clutt pp tri lred environmen"
-    },
-    {
-        "id": 97,
-        "title": "AyurCare is a full-stack web and mobile application for the Ayurvedic product supply chain.",
-        "abstract": "It improves transparency and quality monitoring from farmers to consumers. Farmers can register crops, and manufacturers can record processing details. The system uses a centralized database with secure role-based access. Consumers can verify product authenticity using QR code scanning."
-    },
-    {
-        "id": 98,
-        "title": "CosmoCycle is a web-based platform designed to address the growing problem of cosmeti",
-        "abstract": "product wastage caused by unsuitable purchases and near-expiry items. Many users invest : skincare and cosmetic products that may not suit their skin type or preferences, resulting in unused or partially used products being discarded. This platform enables users to resell such cosmetics at a reduced price, promoting sustainability, affordability, and responsible"
-    },
-    {
-        "id": 99,
-        "title": "The Online Complai i",
-        "abstract": "; plaint Management System is a web-based application designed to simplify and automate the process of registering, tracki i a g g, tracking, and resolving complaints in real time. This system is \u2018 in environmer nts such as colleges, hostels, apartments, and offices, where handling"
-    },
-    {
-        "id": 100,
-        "title": "The",
-        "abstract": "Bank Management System (BMS) is a web-b i ees ene ased application designed to modernize tream perations through an intuitive i Be ae \u201c gh an intuitive interface built with HTML"
-    },
-    {
-        "id": 101,
-        "title": "Time Resume Designer is a web-based application that helps users create professional",
-        "abstract": "educational to enter personal details, le interface. As users fill in the y appealing format."
-    },
-    {
-        "id": 102,
+        "id": 77,
         "title": "Conversational Smart Notebook is an AJ",
-        "abstract": "interact with uploaded PDF documents System allows learners to ask questions, while ensuring \u2014 that responses -based learning assistant that enables users to"
+        "abstract": "interact with uploaded PDF documents system allows learners to ask questions, while ensuring \u2014 that responses -based learning assistant that enables users to"
     },
     {
-        "id": 103,
+        "id": 78,
         "title": "This project focuses on designing a Farm-to-Home E-Commerce Application that connects",
         "abstract": "farmers directly with customers for the sale of fresh products such as vegetables, fruits, and dairy items. The main objective of this system is to eliminate middlemen from the supply chain so that farmers can receive fair prices for their products while customers get fresh items at affordable rates. Farmers can register on the platform, upload product details such as price and availability, and manage customer orders efficiently."
     },
     {
-        "id": 104,
+        "id": 79,
         "title": "Maintaining",
-        "abstract": "g a healthy lifestyle is j i yle is increasingly difficult due to the rising consumption of Jon Of processed qT y n"
+        "abstract": "g a healthy lifestyle is j i yle is increasingly difficult due to the rising consumption of Jon Of processed T y n"
     },
     {
-        "id": 105,
-        "title": "In the current academic enviro tud. aff t",
-        "abstract": "d TY I Ics ellective y V n ment, students are expected to manage their Ss i i )"
+        "id": 80,
+        "title": "In the current academic enviro tud ff t",
+        "abstract": "d TY I Ics effective y V n ment, students are expected to manage their Ss i i ?"
     },
     {
-        "id": 106,
-        "title": ":",
-        "abstract": "In 2026, India\u2019s logisti : \u2019 gistics and transportation sector continues to be a key contributor to economic g i illi"
-    },
-    {
-        "id": 107,
+        "id": 81,
         "title": "Procrastination is i",
         "abstract": "6 On 1s a Common behavior among students that negatively affects academic performance and overall productivi studying, ty. Many students tend to delay academic tasks such as"
     },
     {
-        "id": 108,
+        "id": 82,
         "title": "Air pollution is one of the major environmental challenges affecting public health and",
         "abstract": "ecological balance. Continuous monitoring and accurate prediction of air quality are essential for taking preventive measures and improving the quality of life. This project focuses on designing an Air Quality Monitoring and Prediction System using machine learning techniques."
     },
     {
-        "id": 109,
-        "title": "In urban is",
-        "abstract": "Pt Petia eon fad face difficulty in finding reliable daily-wage service workers ha ; itionally, lack of transparency in labour charges, material costs, and time agit often leads to overcharging and mistrust between customers and workers. To address these challenges, this project proposes a real-time web-based application that enables users to book daily-wage workers based on availability and service requirements. A key feature of the system is the inclusion of free expert advisors who"
+        "id": 83,
+        "title": "In urban and semi-urba",
+        "abstract": "Se. eign ane face difficulty in ee reliable daily-wage service workers ee ee . a ie ack of transparency in labour charges, material costs, and time os: ercharging and mistrust between customers and workers. To address these challenges, i ae proposes a real-time web-based application that enables users to book daily-wage workers based on availability and service requirements. A key feature of the system is the inclusion of free expert advisors who"
     },
     {
-        "id": 110,
-        "title": "Me.",
-        "abstract": "The Live Location Based Person Safety System is designed to enhance personal security ee by providing real-time location tracking and instant emergency alert mechanisms. This aS system enables users to share their live location with trusted contacts during critical situations, ensuring timely assistance and improved safety. It is especially useful for"
+        "id": 84,
+        "title": "The Password Gencrator System is a web-based application designed to help users create strong, secure, and",
+        "abstract": "random passwords. This platform aims to improve online security by offering an easy-to-use tool for generating passwords that mect modern security standards. The system allows users to customize their password strength and complexity, ensuring that passwords are difficult to guess or crack."
     },
     {
-        "id": 111,
-        "title": ":",
-        "abstract": "A real-time ambulance routing s response solution desi The system continuoy traffic sensors, camer"
+        "id": 85,
+        "title": "MyStudyLife is a student schedule management project designed to help students balance academics,",
+        "abstract": "extracurricular activities, and personal commitments. It provides an intuitive platform for creating personalized schedules, tracking tasks, and optimizing time to reduce stress and improve productivity."
     },
     {
-        "id": 112,
-        "title": ": eranetiealreelly Saaete bens that allows users to write, compile, and run Python",
-        "abstract": "system, Th y in a web browser. Users do not need to install Python or any software on their sm. They can simply open the website, write Python code, and execute it online. The application takes Python code as input, sends it to the server for execution, and displays the output or error messages on the same web page. This system is especially useful for students, beginners, and learners who want to practice Python programming anytime and anywhere using a"
+        "id": 86,
+        "title": "The Grocery Expiry Tracker is a smart inventory management system designed to help",
+        "abstract": "individuals and households monitor the expiry dates of grocery items, thereby reducing food waste and promoting healthier consumption habits. The system allows users to input groceries manually or via barcode scanning, along with their expiry dates. It sends timely reminders and alerts for items nearing their expiration, enabling users to consume or discard products before they spoil. The tracker"
     },
     {
-        "id": 113,
-        "title": "bk have become a popular and powerful way of expressing ideas,",
-        "abstract": "emotions, and humor on social media platforms. Creating memes manually using image editing tools can be time-consuming and requires technical skills. The Meme Generator App using Flask is designed to simplify the process of meme creation by allowing users to easily generate memes through a web-based interface."
+        "id": 87,
+        "title": "The Grocery Expiry Tracker is a smart inventory management system designed to help",
+        "abstract": "individuals and households monitor the expiry dates of grocery items, thereby reducing food waste and promoting healthier consumption habits. The system allows users to input groceries manually or via barcode scanning, along with their expiry dates. It sends timely reminders and alerts for items - nearing their expiration, enabling users to consume or discard products before they spoil. The tracker can be implemented as a mobile or web application, incorporating features like categorization,"
     },
     {
-        "id": 114,
-        "title": "Splitting expenses |",
-        "abstract": "Sina i i i | group Is often difficult during trips, shared rooms, or g Sore ; . OF group events. When manually, it may ca ion, m \u2018 use confusion, mistakes"
+        "id": 88,
+        "title": "~ Farming is unpredictable, and soil health plays a crucial role in determining crop success. The Soil Monitoring",
+        "abstract": "~3 System is a smart web-based tool designed to help farmers track essential soil parameters like moisture levels, pH balance, temperature, and nutrient concentrations (NPK) in real time. Instead of relying on guesswork or ~y time-consuming manual testing, farmers get instant insights that guide them in making the right decisions for"
     },
     {
-        "id": 115,
-        "title": "yf neonveni",
-        "abstract": "Mail D i Spam etection System that works across different operating systems such as Android and iOS."
+        "id": 89,
+        "title": "My Campus Companion is an integrated campus management and student support system",
+        "abstract": "designed to enhance communication, accessibility, and efficiency within an educational ;nstitution. The project aims to provide a single digital platform that connects students, faculty, and administrators while simplifying day-to-day academic and campus activities."
+    },
+    {
+        "id": 90,
+        "title": "\u00b0 The internet and social media are now fundamental components of how peo J",
+        "abstract": "disseminate The rapid growth of social media and messaging platforms has im roved communication but also increased the spread of TOXIC and HARMFUL ane This project presents a web-based messenger application integrated with a toxic . speech detection system that monitors messages in real time . The system automatically classifies messages as Toxic or Non-Toxic using Machine Learning"
+    },
+    {
+        "id": 91,
+        "title": "lental health issues such as stress, anxiety, depression, and academic pr .",
+        "abstract": "affecting students. Many students hesitate to seek fi \u2018si Wh Hie ie aa led oe 2tT tag vane i site ek professional hel : i ack of awareness, or unavailability of immediate support ee ge ey This project proposes poses a Mental Health Chatbot that provi i"
+    },
+    {
+        "id": 92,
+        "title": "The Expense Tracker System i",
+        "abstract": "and rmeriitier Terr cally os application designed to help users efficiently manage difficult ioagack Thalespending marl pened today\u2019s fast-paced lifestyle, individuals often find it"
+    },
+    {
+        "id": 93,
+        "title": "The Expense Tr: i i",
+        "abstract": "bee Seine s a user-friendly software application designed to help individuals Kespino tec cxponeee nd analyze their daily financial transactions. In the modern digital era, ce orannina thie c manually can be time-consuming and error-prone, often leading to poor seas . ystem provides a structured and efficient solution to monitor income and"
+    },
+    {
+        "id": 94,
+        "title": "In recent years, monitoring and improving student academic performance has",
+        "abstract": "oe a major concern in educational institutions. Many students face difficulties in achieving academic success due to lack of proper guidance, early performance analysis, and personalized feedback. Traditional evaluate methods fail to identify learning gaps at an early stage, which may lead to poor"
+    },
+    {
+        "id": 95,
+        "title": "In today's fast-growing digital economy, businesses generate a massive amount of sales data through online",
+        "abstract": "platforms, retail stores, and customer interactions. Effectively analyzing this data is essential for improving sales performance, understanding customer needs, and making strategic business decisions. However, traditional sales analysis techniques often fail to provide real-time insights, accurate predictions, and detailed performance evaluation. This limitation results in poor inventory planning, revenue loss, and reduced customer satisfaction."
+    },
+    {
+        "id": 96,
+        "title": "Online platforms continuously generate large volumes of dynamic content that reflect",
+        "abstract": "changing public interests and collective behaviour in real time. These patterns often manifest as trends that rise rapidly, gain widespread attention, and eventually decline. Understanding the progression of such trends is essential for analysing digital influence, information dissemination, and user engagement over time. The Online Trend Life Cycle Analyzer project focuses on systematically studying the evolution of online trends by identifying their distinct"
+    },
+    {
+        "id": 97,
+        "title": "With the rapid growth of e-commerce platforms, online sellers and bu",
+        "abstract": ". Yers increasingly ely on digital interactions to conduct transactions. While this has enhanced convenience and market reach, it has also raised concerns regarding trust, fraud, fake reviews, and unreliable"
+    },
+    {
+        "id": 98,
+        "title": "Nowadays, digital images are a main source of shared information in social media. Meanwhile,",
+        "abstract": "malicious software can forge such images for fake information. So, it\u2019s crucial to identify these forgeries. This problem was tackled in the literature by various digital image forgery detection techniques. But most of these techniques are tied to detecting only one type of forgery, such as image splicing or copy-move that is not applied in real life. This paper proposes an approach, to enhance digital image forgery detection using deep learning techniques via transfer learning to"
+    },
+    {
+        "id": 99,
+        "title": "vadays, unhealthy eati i",
+        "abstract": "= He eee eee and lack of awareness about calorie intake have become major pe ee eee seases Such as obesity, diabetes, and heart problems. Most peo is ut knowing its nutritional value, which leads to health imbalance /"
+    },
+    {
+        "id": 100,
+        "title": "Credit card fraud has become a major concern due to the rapid growth of online and di gital",
+        "abstract": "transactions. Detecting fraudulent transactions manually is difficult and time-consuming. This project proposes a Credit Card Fraud Detection System using machine learning techniques to identity suspicious transactions accurately and efficiently. The system analyzes historical transaction data and learns patterns that distinguish genuine transactions from fraudulent ones. Features such as transaction amount, time, and user behavior are used to train the model. When a"
+    },
+    {
+        "id": 101,
+        "title": "AyurCare is a full-stack web and mobile application for the Ayurvedic product supply chain. ML",
+        "abstract": "It improves transparency and quality monitoring from farmers to consumers. Farmers can register crops, and manufacturers can record processing details. The system uses a centralized ne as database with secure role-based access. Consumers can verify product authenticity using QR"
+    },
+    {
+        "id": 102,
+        "title": "CosmoCycle is a web-based platform designed to address the growing problem of cosmeti",
+        "abstract": "product wastage caused by unsuitable purchases and near-expiry items. Many users invest : skincare and cosmetic products that may not suit their skin type or preferences, resulting in unused or partially used products being discarded. This platform enables users to resell such cosmetics at a reduced price, promoting sustainability, affordability, and responsible"
+    },
+    {
+        "id": 103,
+        "title": "The Online Complai i",
+        "abstract": "plaint Management System is a web-based application designed to simplify and automate the process of registering, tracki i ee g. g, tracking, and resolving complaints in real time. This system is \u2018 in environmer ' nts such as colleges, hostels, apartments, and offices, where handling"
+    },
+    {
+        "id": 104,
+        "title": "Time Resume Designer is a web-based application that helps users create professional",
+        "abstract": "educational to enter personal details, le interface. As users fill in the y appealing format."
     }
 ]

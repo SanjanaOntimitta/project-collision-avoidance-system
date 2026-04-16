@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, render_template
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import json
@@ -16,10 +16,10 @@ try:
 except FileNotFoundError:
     projects = []
 
-# ✅ Serve frontend
+# ✅ Serve frontend (FIXED)
 @app.route("/")
 def home():
-    return send_from_directory('.', 'index.html')
+    return render_template("index.html")
 
 # 📄 Extract text
 def extract_text(file):
