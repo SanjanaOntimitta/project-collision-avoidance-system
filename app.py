@@ -3,7 +3,6 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import json
 import PyPDF2
-import re
 
 app = Flask(__name__)
 
@@ -18,12 +17,12 @@ except FileNotFoundError:
     projects = []
 
 
-# ---------------- CLEAN (LIGHTWEIGHT ONLY) ----------------
+# ---------------- CLEAN LIGHT ----------------
 def clean(text):
     return text.lower().strip()
 
 
-# ---------------- EXTRACT TEXT ----------------
+# ---------------- EXTRACT FILE TEXT ----------------
 def extract_text(file):
     text = ""
 
@@ -52,7 +51,7 @@ def get_status(score):
         return "✅ Low Similarity"
 
 
-# ---------------- PRE-ENCODE DATASET (IMPORTANT FIX) ----------------
+# ---------------- PRE-ENCODE DATASET ----------------
 stored_texts = [
     clean(p["title"] + " " + p["abstract"])
     for p in projects
@@ -75,7 +74,7 @@ def check():
 
     file_text = extract_text(file)
 
-    # 🔥 SMART MERGE
+    # ---------------- SMART MERGE ----------------
     parts = []
 
     if text:
@@ -89,18 +88,18 @@ def check():
 
     combined = clean(" ".join(parts))
 
-    # 🔥 BOOST FOR SHORT TEXT (IMPORTANT)
+    # 🔥 IMPORTANT FIX: boost short text input
     if len(combined.split()) < 5:
-        combined += " project system application software"
+        combined += " project system application software quiz portal web development"
 
-    # 🔥 USER EMBEDDING (NORMALIZED)
+    # ---------------- EMBEDDING ----------------
     user_embedding = model.encode([combined], normalize_embeddings=True)
 
     similarities = cosine_similarity(user_embedding, stored_embeddings)[0]
 
     print("\nMAX SIMILARITY:", max(similarities))
 
-    # 🔥 TOP 5 RESULTS
+    # ---------------- TOP RESULTS ----------------
     top_k = similarities.argsort()[::-1][:5]
 
     results = []

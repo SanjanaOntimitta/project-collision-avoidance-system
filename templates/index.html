@@ -61,7 +61,6 @@ button:hover {
 h2 {
     text-align: center;
 }
-
 </style>
 
 </head>
@@ -99,23 +98,20 @@ function clearText() {
 }
 
 async function checkSimilarity() {
-    let text = document.getElementById("projectInput").value;
+    let text = document.getElementById("projectInput").value.trim();
     let file = document.getElementById("fileInput").files[0];
 
-    if (text.trim() === "" && !file) {
+    // 🔥 FIX: better validation
+    if (!text && !file) {
         alert("Please enter text OR upload a file!");
         return;
     }
 
     let formData = new FormData();
 
-    if (text.trim() !== "") {
-        formData.append("text", text);
-    }
-
-    if (file) {
-        formData.append("file", file);
-    }
+    // 🔥 FIX: only send if exists
+    if (text) formData.append("text", text);
+    if (file) formData.append("file", file);
 
     let box = document.getElementById("resultBox");
     let matchesBox = document.getElementById("matchesBox");
@@ -164,4 +160,4 @@ async function checkSimilarity() {
 </script>
 
 </body>
-</html>
+</html> 
