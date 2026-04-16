@@ -10,6 +10,7 @@ app = Flask(__name__)
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
+
 # ---------------- CLEAN TEXT ----------------
 def clean(text):
     text = text.lower()
@@ -26,7 +27,6 @@ except FileNotFoundError:
     projects = []
 
 
-# 🔥 PRE-ENCODE DATASET (IMPORTANT FIX)
 stored_texts = [
     clean(p["title"] + " " + p["abstract"])
     for p in projects
@@ -38,6 +38,7 @@ stored_embeddings = model.encode(stored_texts)
 # ---------------- EXTRACT TEXT ----------------
 def extract_text(file):
     text = ""
+
     if file and file.filename != "":
         if file.filename.endswith(".txt"):
             text = file.read().decode("utf-8")
@@ -45,8 +46,9 @@ def extract_text(file):
         elif file.filename.endswith(".pdf"):
             reader = PyPDF2.PdfReader(file)
             for page in reader.pages:
-                if page.extract_text():
-                    text += page.extract_text()
+                page_text = page.extract_text()
+                if page_text:
+                    text += " " + page_text
 
     return text
 
@@ -74,13 +76,24 @@ def check():
     text = request.form.get("text", "").strip()
     file = request.files.get("file")
 
-    abstract = extract_text(file)
+    file_text = extract_text(file)
 
-    if not text and not abstract:
+    # 🔥 SMART INPUT HANDLING (WORKS FOR ALL CASES)
+    parts = []
+
+    if text:
+        parts.append(text)
+
+    if file_text:
+        parts.append(file_text)
+
+    if len(parts) == 0:
         return jsonify({"results": []})
 
-    # 🔥 CLEAN INPUT
-    combined = clean((text + " " + abstract) * 2)
+    combined = clean(" ".join(parts))
+
+    # 🔥 BOOST SIGNAL (VERY IMPORTANT)
+    combined = combined * 2
 
     user_embedding = model.encode([combined])
 
@@ -88,8 +101,8 @@ def check():
 
     print("\nMAX SIMILARITY:", max(similarities))
 
-    # 🔥 ALWAYS TAKE TOP 5 (NO EMPTY RESULTS EVER)
-    top_k = np.argsort(similarities)[::-1][:5]
+    # 🔥 ALWAYS RETURN TOP 5 (NO EMPTY RESULTS EVER)
+    top_k = similarities.argsort()[::-1][:5]
 
     results = []
 

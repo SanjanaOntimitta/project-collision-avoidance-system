@@ -13,31 +13,55 @@ body {
     align-items: center;
     height: 100vh;
 }
+
 .container {
     background: rgba(255,255,255,0.1);
     padding: 25px;
     border-radius: 15px;
-    width: 400px;
+    width: 420px;
     color: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
 }
+
 textarea {
     width: 100%;
-    height: 100px;
+    height: 110px;
     border-radius: 10px;
     border: none;
     padding: 10px;
+    font-size: 14px;
+    resize: none;
 }
+
+input[type="file"] {
+    margin-top: 10px;
+    color: white;
+}
+
 button {
     margin: 10px 5px;
-    padding: 10px;
+    padding: 10px 15px;
     border-radius: 8px;
     border: none;
     cursor: pointer;
+    font-weight: bold;
 }
+
+button:hover {
+    opacity: 0.9;
+}
+
 .result {
     margin-top: 15px;
     display: none;
+    max-height: 300px;
+    overflow-y: auto;
 }
+
+h2 {
+    text-align: center;
+}
+
 </style>
 
 </head>
@@ -60,7 +84,7 @@ button {
 <button onclick="clearText()">Clear</button>
 
 <div class="result" id="resultBox">
-<div id="matchesBox"></div>
+    <div id="matchesBox"></div>
 </div>
 
 </div>
@@ -71,6 +95,7 @@ function clearText() {
     document.getElementById("projectInput").value = "";
     document.getElementById("fileInput").value = "";
     document.getElementById("resultBox").style.display = "none";
+    document.getElementById("matchesBox").innerHTML = "";
 }
 
 async function checkSimilarity() {
@@ -78,14 +103,19 @@ async function checkSimilarity() {
     let file = document.getElementById("fileInput").files[0];
 
     if (text.trim() === "" && !file) {
-        alert("Enter text OR upload a file!");
+        alert("Please enter text OR upload a file!");
         return;
     }
 
     let formData = new FormData();
 
-    if (text) formData.append("text", text);
-    if (file) formData.append("file", file);
+    if (text.trim() !== "") {
+        formData.append("text", text);
+    }
+
+    if (file) {
+        formData.append("file", file);
+    }
 
     let box = document.getElementById("resultBox");
     let matchesBox = document.getElementById("matchesBox");
@@ -102,28 +132,32 @@ async function checkSimilarity() {
         let data = await response.json();
 
         if (!data.results || data.results.length === 0) {
-            matchesBox.innerHTML = "<p>No similar projects found.</p>";
+            matchesBox.innerHTML = "<p>⚠️ No similar projects found. Try better input.</p>";
             return;
         }
 
         matchesBox.innerHTML = "<h3>🔍 Similar Projects Found:</h3>";
 
         data.results.forEach((item, index) => {
-            let color = "green";
-            if (item.similarity > 85) color = "red";
-            else if (item.similarity >= 70) color = "orange";
+
+            let color = "lightgreen";
+            if (item.similarity > 80) color = "red";
+            else if (item.similarity >= 50) color = "orange";
 
             matchesBox.innerHTML += `
-                <p>
-                    ${index + 1}. <b>${item.title}</b><br>
-                    &nbsp;&nbsp;&nbsp;Similarity: ${item.similarity}%<br>
-                    &nbsp;&nbsp;&nbsp;Status: <span style="color:${color}">${item.status}</span>
-                </p>
+                <div style="margin-bottom:10px;">
+                    <b>${index + 1}. ${item.title}</b><br>
+                    Similarity: ${item.similarity}%<br>
+                    Status: <span style="color:${color}; font-weight:bold;">
+                        ${item.status}
+                    </span>
+                </div>
             `;
         });
 
     } catch (error) {
         matchesBox.innerHTML = "<p>❌ Server error. Try again.</p>";
+        console.error(error);
     }
 }
 
