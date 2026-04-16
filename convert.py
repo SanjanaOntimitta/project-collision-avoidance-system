@@ -3,9 +3,15 @@ from pdf2image import convert_from_path
 import json
 import os
 import re
+import platform
 
-# 🔴 Tesseract path
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+# 🔥 OS detection
+if platform.system() == "Windows":
+    pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+    POPPLER_PATH = r"C:\poppler\Library\bin"   # ⚠️ change if needed
+else:
+    pytesseract.pytesseract.tesseract_cmd = "/opt/homebrew/bin/tesseract"
+    POPPLER_PATH = None
 
 data = []
 id_counter = 1
@@ -13,19 +19,19 @@ id_counter = 1
 def clean(text):
     return re.sub(r'\s+', ' ', text).strip()
 
-pdf_folder = r"E:\GITHUB\project-collision-avoidance-system\data\pdfs"
+pdf_folder = "data/pdfs"
 
 for file in os.listdir(pdf_folder):
     if file.endswith(".pdf"):
 
         print(f"\n📄 Processing file: {file}")
-
         path = os.path.join(pdf_folder, file)
 
-        pages = convert_from_path(
-            path,
-            poppler_path=r"E:\poppler-25.12.0\Library\bin"
-        )
+        # OS-based poppler usage
+        if POPPLER_PATH:
+            pages = convert_from_path(path, poppler_path=POPPLER_PATH)
+        else:
+            pages = convert_from_path(path)
 
         full_text = ""
 
@@ -43,10 +49,7 @@ for file in os.listdir(pdf_folder):
                 title = clean(lines[0])
                 abstract = clean(" ".join(lines[1:6]))
 
-                # 🔴 FILTER BAD DATA
-                if len(title) < 10:
-                    continue
-                if len(abstract) < 50:
+                if len(title) < 10 or len(abstract) < 50:
                     continue
 
                 data.append({
@@ -58,6 +61,8 @@ for file in os.listdir(pdf_folder):
                 id_counter += 1
 
 # Save JSON
+os.makedirs("data", exist_ok=True)
+
 with open("data/projects.json", "w") as f:
     json.dump(data, f, indent=4)
 

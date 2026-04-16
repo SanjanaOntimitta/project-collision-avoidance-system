@@ -13,7 +13,6 @@ body {
     align-items: center;
     height: 100vh;
 }
-
 .container {
     background: rgba(255,255,255,0.1);
     padding: 25px;
@@ -21,7 +20,6 @@ body {
     width: 400px;
     color: white;
 }
-
 textarea {
     width: 100%;
     height: 100px;
@@ -29,7 +27,6 @@ textarea {
     border: none;
     padding: 10px;
 }
-
 button {
     margin: 10px 5px;
     padding: 10px;
@@ -37,7 +34,6 @@ button {
     border: none;
     cursor: pointer;
 }
-
 .result {
     margin-top: 15px;
     display: none;
@@ -91,35 +87,44 @@ async function checkSimilarity() {
     if (text) formData.append("text", text);
     if (file) formData.append("file", file);
 
-    let response = await fetch("http://localhost:5000/check", {
-        method: "POST",
-        body: formData
-    });
-
-    let data = await response.json();
-
     let box = document.getElementById("resultBox");
     let matchesBox = document.getElementById("matchesBox");
 
     box.style.display = "block";
+    matchesBox.innerHTML = "<p>⏳ Checking similarity...</p>";
 
-    if (!data.results || data.results.length === 0) {
-        matchesBox.innerHTML = "<p>No similar projects found.</p>";
-        return;
+    try {
+        let response = await fetch("/check", {
+            method: "POST",
+            body: formData
+        });
+
+        let data = await response.json();
+
+        if (!data.results || data.results.length === 0) {
+            matchesBox.innerHTML = "<p>No similar projects found.</p>";
+            return;
+        }
+
+        matchesBox.innerHTML = "<h3>🔍 Similar Projects Found:</h3>";
+
+        data.results.forEach((item, index) => {
+            let color = "green";
+            if (item.similarity > 85) color = "red";
+            else if (item.similarity >= 70) color = "orange";
+
+            matchesBox.innerHTML += `
+                <p>
+                    ${index + 1}. <b>${item.title}</b><br>
+                    &nbsp;&nbsp;&nbsp;Similarity: ${item.similarity}%<br>
+                    &nbsp;&nbsp;&nbsp;Status: <span style="color:${color}">${item.status}</span>
+                </p>
+            `;
+        });
+
+    } catch (error) {
+        matchesBox.innerHTML = "<p>❌ Server error. Try again.</p>";
     }
-
-    // 🎯 EXACT REQUIRED FORMAT
-    matchesBox.innerHTML = "<h3>🔍 Similar Projects Found:</h3>";
-
-    data.results.forEach((item, index) => {
-        matchesBox.innerHTML += `
-            <p>
-                ${index + 1}. <b>${item.title}</b><br>
-                &nbsp;&nbsp;&nbsp;Similarity: ${item.similarity}%<br>
-                &nbsp;&nbsp;&nbsp;Status: ${item.status}
-            </p>
-        `;
-    });
 }
 
 </script>
