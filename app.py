@@ -3,11 +3,15 @@ from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import json
 import PyPDF2
+import re
 
 app = Flask(__name__)
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
-THRESHOLD = 0.7
+
+# 🔥 LOWERED THRESHOLD (IMPORTANT FIX)
+THRESHOLD = 0.45
+
 
 # ✅ Load dataset
 try:
@@ -16,10 +20,14 @@ try:
 except FileNotFoundError:
     projects = []
 
-# ✅ Serve frontend (FIXED)
-@app.route("/")
-def home():
-    return render_template("index.html")
+
+# 🔥 CLEAN TEXT FUNCTION (VERY IMPORTANT)
+def clean(text):
+    text = text.lower()
+    text = re.sub(r'[^a-z0-9\s]', ' ', text)
+    text = re.sub(r'\s+', ' ', text).strip()
+    return text
+
 
 # 📄 Extract text
 def extract_text(file):
@@ -27,12 +35,15 @@ def extract_text(file):
     if file and file.filename != "":
         if file.filename.endswith(".txt"):
             text = file.read().decode("utf-8")
+
         elif file.filename.endswith(".pdf"):
             reader = PyPDF2.PdfReader(file)
             for page in reader.pages:
                 if page.extract_text():
                     text += page.extract_text()
+
     return text
+
 
 # 🚦 Status
 def get_status(score):
@@ -43,6 +54,13 @@ def get_status(score):
         return "⚡ Moderate Similarity"
     else:
         return "✅ Low Similarity"
+
+
+# 🔍 HOME
+@app.route("/")
+def home():
+    return render_template("index.html")
+
 
 # 🔍 API
 @app.route("/check", methods=["POST"])
@@ -58,12 +76,15 @@ def check():
     if len(projects) == 0:
         return jsonify({"results": []})
 
-    combined = " ".join([t for t in [text, abstract] if t])
+    # 🔥 combine + clean input
+    combined = clean(" ".join([text, abstract]))
 
     user_embedding = model.encode([combined])
 
+    # 🔥 clean dataset text
     stored_texts = [
-        p["title"] + " " + p["abstract"] for p in projects
+        clean(p["title"] + " " + p["abstract"])
+        for p in projects
     ]
 
     stored_embeddings = model.encode(stored_texts)
@@ -83,6 +104,7 @@ def check():
     results = sorted(results, key=lambda x: x["similarity"], reverse=True)
 
     return jsonify({"results": results})
+
 
 if __name__ == "__main__":
     app.run(debug=True)
