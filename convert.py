@@ -5,6 +5,7 @@ import os
 import re
 import platform
 
+# ---------------- SETUP ----------------
 if platform.system() == "Windows":
     pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
     POPPLER_PATH = r"C:\poppler\Library\bin"
@@ -15,8 +16,10 @@ else:
 data = []
 id_counter = 1
 
+pdf_folder = "data/pdfs"
 
-# 🔥 CLEANER VERSION (IMPORTANT)
+
+# ---------------- CLEAN TEXT ----------------
 def clean(text):
     text = text.lower()
     text = re.sub(r'[^a-z0-9\s]', ' ', text)
@@ -24,48 +27,52 @@ def clean(text):
     return text
 
 
-pdf_folder = "data/pdfs"
-
+# ---------------- PROCESS PDFs ----------------
 for file in os.listdir(pdf_folder):
     if file.endswith(".pdf"):
-        print(f"Processing {file}")
+        print(f"Processing: {file}")
 
         path = os.path.join(pdf_folder, file)
 
-        if POPPLER_PATH:
-            pages = convert_from_path(path, poppler_path=POPPLER_PATH)
-        else:
-            pages = convert_from_path(path)
+        pages = convert_from_path(path, poppler_path=POPPLER_PATH) if POPPLER_PATH else convert_from_path(path)
 
         full_text = ""
 
         for page in pages:
             full_text += pytesseract.image_to_string(page)
 
-        sections = full_text.split("ABSTRACT")
+        # 🔥 IMPROVED SPLITTING
+        full_text = full_text.replace("\n", " ")
 
-        for section in sections[1:]:
-            lines = section.strip().split("\n")
+        # Try better extraction strategy
+        parts = re.split(r'abstract[:\-]?', full_text, flags=re.IGNORECASE)
 
-            if len(lines) > 2:
-                title = clean(lines[0])
-                abstract = clean(" ".join(lines[1:6]))
+        if len(parts) < 2:
+            continue
 
-                if len(title) < 5 or len(abstract) < 20:
-                    continue
+        title = clean(parts[0][:100])
+        abstract = clean(parts[1][:500])
 
-                data.append({
-                    "id": id_counter,
-                    "title": title,
-                    "abstract": abstract
-                })
+        # 🔥 FILTER BAD DATA
+        if len(title) < 5 or len(abstract) < 30:
+            continue
 
-                id_counter += 1
+        if "copyright" in abstract or "introduction" not in abstract:
+            continue
+
+        data.append({
+            "id": id_counter,
+            "title": title,
+            "abstract": abstract
+        })
+
+        id_counter += 1
 
 
+# ---------------- SAVE ----------------
 os.makedirs("data", exist_ok=True)
 
 with open("data/projects.json", "w") as f:
     json.dump(data, f, indent=4)
 
-print("✅ Dataset created successfully")
+print("✅ Dataset created successfully with improved extraction!")

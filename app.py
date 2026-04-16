@@ -10,10 +10,6 @@ app = Flask(__name__)
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
-# 🔥 LOWER THRESHOLD (MAIN FIX)
-THRESHOLD = 0.25
-
-
 # ---------------- CLEAN TEXT ----------------
 def clean(text):
     text = text.lower()
@@ -39,7 +35,7 @@ stored_texts = [
 stored_embeddings = model.encode(stored_texts)
 
 
-# ---------------- EXTRACT PDF TEXT ----------------
+# ---------------- EXTRACT TEXT ----------------
 def extract_text(file):
     text = ""
     if file and file.filename != "":
@@ -58,9 +54,9 @@ def extract_text(file):
 # ---------------- STATUS ----------------
 def get_status(score):
     percent = score * 100
-    if percent > 85:
+    if percent > 80:
         return "⚠️ High Similarity"
-    elif percent >= 60:
+    elif percent >= 50:
         return "⚡ Moderate Similarity"
     else:
         return "✅ Low Similarity"
@@ -83,9 +79,6 @@ def check():
     if not text and not abstract:
         return jsonify({"results": []})
 
-    if len(projects) == 0:
-        return jsonify({"results": []})
-
     # 🔥 CLEAN INPUT
     combined = clean((text + " " + abstract) * 2)
 
@@ -93,23 +86,25 @@ def check():
 
     similarities = cosine_similarity(user_embedding, stored_embeddings)[0]
 
-    print("MAX SIMILARITY:", max(similarities))  # DEBUG
+    print("\nMAX SIMILARITY:", max(similarities))
+
+    # 🔥 ALWAYS TAKE TOP 5 (NO EMPTY RESULTS EVER)
+    top_k = np.argsort(similarities)[::-1][:5]
 
     results = []
 
-    for i, score in enumerate(similarities):
-        if score >= THRESHOLD:
-            results.append({
-                "title": projects[i]["title"],
-                "similarity": round(float(score) * 100, 2),
-                "status": get_status(score)
-            })
+    for i in top_k:
+        score = similarities[i]
 
-    results = sorted(results, key=lambda x: x["similarity"], reverse=True)
+        results.append({
+            "title": projects[i]["title"],
+            "similarity": round(float(score) * 100, 2),
+            "status": get_status(score)
+        })
 
     return jsonify({"results": results})
 
 
 if __name__ == "__main__":
-    print("TOTAL PROJECTS:", len(projects))
+    print("TOTAL PROJECTS LOADED:", len(projects))
     app.run(debug=True)
