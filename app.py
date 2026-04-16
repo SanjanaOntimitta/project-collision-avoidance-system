@@ -4,19 +4,10 @@ from sklearn.metrics.pairwise import cosine_similarity
 import json
 import PyPDF2
 import re
-import numpy as np
 
 app = Flask(__name__)
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
-
-
-# ---------------- CLEAN TEXT ----------------
-def clean(text):
-    text = text.lower()
-    text = re.sub(r'[^a-z0-9\s]', ' ', text)
-    text = re.sub(r'\s+', ' ', text)
-    return text.strip()
 
 
 # ---------------- LOAD DATASET ----------------
@@ -27,12 +18,9 @@ except FileNotFoundError:
     projects = []
 
 
-stored_texts = [
-    clean(p["title"] + " " + p["abstract"])
-    for p in projects
-]
-
-stored_embeddings = model.encode(stored_texts)
+# ---------------- CLEAN (LIGHTWEIGHT ONLY) ----------------
+def clean(text):
+    return text.lower().strip()
 
 
 # ---------------- EXTRACT TEXT ----------------
@@ -64,6 +52,15 @@ def get_status(score):
         return "✅ Low Similarity"
 
 
+# ---------------- PRE-ENCODE DATASET (IMPORTANT FIX) ----------------
+stored_texts = [
+    clean(p["title"] + " " + p["abstract"])
+    for p in projects
+]
+
+stored_embeddings = model.encode(stored_texts, normalize_embeddings=True)
+
+
 # ---------------- HOME ----------------
 @app.route("/")
 def home():
@@ -78,7 +75,7 @@ def check():
 
     file_text = extract_text(file)
 
-    # 🔥 SMART INPUT HANDLING (WORKS FOR ALL CASES)
+    # 🔥 SMART MERGE
     parts = []
 
     if text:
@@ -92,16 +89,18 @@ def check():
 
     combined = clean(" ".join(parts))
 
-    # 🔥 BOOST SIGNAL (VERY IMPORTANT)
-    combined = combined * 2
+    # 🔥 BOOST FOR SHORT TEXT (IMPORTANT)
+    if len(combined.split()) < 5:
+        combined += " project system application software"
 
-    user_embedding = model.encode([combined])
+    # 🔥 USER EMBEDDING (NORMALIZED)
+    user_embedding = model.encode([combined], normalize_embeddings=True)
 
     similarities = cosine_similarity(user_embedding, stored_embeddings)[0]
 
     print("\nMAX SIMILARITY:", max(similarities))
 
-    # 🔥 ALWAYS RETURN TOP 5 (NO EMPTY RESULTS EVER)
+    # 🔥 TOP 5 RESULTS
     top_k = similarities.argsort()[::-1][:5]
 
     results = []
