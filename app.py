@@ -4,16 +4,25 @@ from sklearn.metrics.pairwise import cosine_similarity
 import json
 import PyPDF2
 import re
+import numpy as np
 
 app = Flask(__name__)
 
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
-# 🔥 LOWERED THRESHOLD (IMPORTANT FIX)
-THRESHOLD = 0.45
+# 🔥 LOWER THRESHOLD (MAIN FIX)
+THRESHOLD = 0.35
 
 
-# ✅ Load dataset
+# ---------------- CLEAN TEXT ----------------
+def clean(text):
+    text = text.lower()
+    text = re.sub(r'[^a-z0-9\s]', ' ', text)
+    text = re.sub(r'\s+', ' ', text)
+    return text.strip()
+
+
+# ---------------- LOAD DATASET ----------------
 try:
     with open("data/projects.json") as f:
         projects = json.load(f)
@@ -21,15 +30,16 @@ except FileNotFoundError:
     projects = []
 
 
-# 🔥 CLEAN TEXT FUNCTION (VERY IMPORTANT)
-def clean(text):
-    text = text.lower()
-    text = re.sub(r'[^a-z0-9\s]', ' ', text)
-    text = re.sub(r'\s+', ' ', text).strip()
-    return text
+# 🔥 PRE-ENCODE DATASET (IMPORTANT FIX)
+stored_texts = [
+    clean(p["title"] + " " + p["abstract"])
+    for p in projects
+]
+
+stored_embeddings = model.encode(stored_texts)
 
 
-# 📄 Extract text
+# ---------------- EXTRACT PDF TEXT ----------------
 def extract_text(file):
     text = ""
     if file and file.filename != "":
@@ -45,24 +55,24 @@ def extract_text(file):
     return text
 
 
-# 🚦 Status
+# ---------------- STATUS ----------------
 def get_status(score):
     percent = score * 100
     if percent > 85:
         return "⚠️ High Similarity"
-    elif percent >= 70:
+    elif percent >= 60:
         return "⚡ Moderate Similarity"
     else:
         return "✅ Low Similarity"
 
 
-# 🔍 HOME
+# ---------------- HOME ----------------
 @app.route("/")
 def home():
     return render_template("index.html")
 
 
-# 🔍 API
+# ---------------- CHECK API ----------------
 @app.route("/check", methods=["POST"])
 def check():
     text = request.form.get("text", "").strip()
@@ -76,20 +86,14 @@ def check():
     if len(projects) == 0:
         return jsonify({"results": []})
 
-    # 🔥 combine + clean input
-    combined = clean(" ".join([text, abstract]))
+    # 🔥 CLEAN INPUT
+    combined = clean(text + " " + abstract)
 
     user_embedding = model.encode([combined])
 
-    # 🔥 clean dataset text
-    stored_texts = [
-        clean(p["title"] + " " + p["abstract"])
-        for p in projects
-    ]
-
-    stored_embeddings = model.encode(stored_texts)
-
     similarities = cosine_similarity(user_embedding, stored_embeddings)[0]
+
+    print("MAX SIMILARITY:", max(similarities))  # DEBUG
 
     results = []
 
@@ -97,7 +101,7 @@ def check():
         if score >= THRESHOLD:
             results.append({
                 "title": projects[i]["title"],
-                "similarity": round(score * 100, 2),
+                "similarity": round(float(score) * 100, 2),
                 "status": get_status(score)
             })
 
@@ -107,4 +111,5 @@ def check():
 
 
 if __name__ == "__main__":
+    print("TOTAL PROJECTS:", len(projects))
     app.run(debug=True)
