@@ -1,121 +1,112 @@
-from flask import Flask, request, jsonify, render_template
-from sentence_transformers import SentenceTransformer
-from sklearn.metrics.pairwise import cosine_similarity
-import json
-import PyPDF2
+from flask import Flask, render_template, request, redirect, url_for, session
+import sqlite3
+import re
 
 app = Flask(__name__)
+app.secret_key = "secret123"
 
-model = SentenceTransformer('all-MiniLM-L6-v2')
+# ================= DATABASE =================
+def init_db():
+    conn = sqlite3.connect('users.db')
+    cur = conn.cursor()
+
+    cur.execute('''
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            first_name TEXT,
+            last_name TEXT,
+            email TEXT UNIQUE,
+            password TEXT
+        )
+    ''')
+
+    conn.commit()
+    conn.close()
+
+init_db()
+
+# ================= VALIDATION =================
+def is_valid_email(email):
+    return email.endswith("@cvr.ac.in")
+
+def is_valid_password(password):
+    pattern = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}$'
+    return re.match(pattern, password)
+
+# ================= ROUTES =================
+
+@app.route('/')
+def login():
+    return render_template('login.html')
 
 
-# ---------------- LOAD DATASET ----------------
-try:
-    with open("data/projects.json") as f:
-        projects = json.load(f)
-except FileNotFoundError:
-    projects = []
+@app.route('/login', methods=['POST'])
+def handle_login():
+    email = request.form['email']
+    password = request.form['password']
 
+    conn = sqlite3.connect('users.db')
+    cur = conn.cursor()
 
-# ---------------- CLEAN LIGHT ----------------
-def clean(text):
-    return text.lower().strip()
+    cur.execute("SELECT * FROM users WHERE email=? AND password=?", (email, password))
+    user = cur.fetchone()
+    conn.close()
 
-
-# ---------------- EXTRACT FILE TEXT ----------------
-def extract_text(file):
-    text = ""
-
-    if file and file.filename != "":
-        if file.filename.endswith(".txt"):
-            text = file.read().decode("utf-8")
-
-        elif file.filename.endswith(".pdf"):
-            reader = PyPDF2.PdfReader(file)
-            for page in reader.pages:
-                page_text = page.extract_text()
-                if page_text:
-                    text += " " + page_text
-
-    return text
-
-
-# ---------------- STATUS ----------------
-def get_status(score):
-    percent = score * 100
-    if percent > 80:
-        return "⚠️ High Similarity"
-    elif percent >= 50:
-        return "⚡ Moderate Similarity"
+    if user:
+        session['user'] = user[3]
+        return redirect(url_for('home'))
     else:
-        return "✅ Low Similarity"
+        return "Invalid credentials ❌"
 
 
-# ---------------- PRE-ENCODE DATASET ----------------
-stored_texts = [
-    clean(p["title"] + " " + p["abstract"])
-    for p in projects
-]
-
-stored_embeddings = model.encode(stored_texts, normalize_embeddings=True)
+@app.route('/signup')
+def signup():
+    return render_template('signup.html')
 
 
-# ---------------- HOME ----------------
-@app.route("/")
+@app.route('/signup', methods=['POST'])
+def handle_signup():
+    fname = request.form['first_name']
+    lname = request.form['last_name']
+    email = request.form['email']
+    password = request.form['password']
+
+    if not is_valid_email(email):
+        return "Use @cvr.ac.in email ❌"
+
+    if not is_valid_password(password):
+        return "Password must be strong ❌"
+
+    try:
+        conn = sqlite3.connect('users.db')
+        cur = conn.cursor()
+
+        cur.execute(
+            "INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)",
+            (fname, lname, email, password)
+        )
+
+        conn.commit()
+        conn.close()
+
+        return render_template('success.html')
+
+    except sqlite3.IntegrityError:
+        return "User already exists ❌"
+
+
+@app.route('/home')
 def home():
-    return render_template("index.html")
+    if 'user' not in session:
+        return redirect(url_for('login'))
+    return render_template('index.html', user=session['user'])
 
 
-# ---------------- CHECK API ----------------
-@app.route("/check", methods=["POST"])
-def check():
-    text = request.form.get("text", "").strip()
-    file = request.files.get("file")
-
-    file_text = extract_text(file)
-
-    # ---------------- SMART MERGE ----------------
-    parts = []
-
-    if text:
-        parts.append(text)
-
-    if file_text:
-        parts.append(file_text)
-
-    if len(parts) == 0:
-        return jsonify({"results": []})
-
-    combined = clean(" ".join(parts))
-
-    # 🔥 IMPORTANT FIX: boost short text input
-    if len(combined.split()) < 5:
-        combined += " project system application software quiz portal web development"
-
-    # ---------------- EMBEDDING ----------------
-    user_embedding = model.encode([combined], normalize_embeddings=True)
-
-    similarities = cosine_similarity(user_embedding, stored_embeddings)[0]
-
-    print("\nMAX SIMILARITY:", max(similarities))
-
-    # ---------------- TOP RESULTS ----------------
-    top_k = similarities.argsort()[::-1][:5]
-
-    results = []
-
-    for i in top_k:
-        score = similarities[i]
-
-        results.append({
-            "title": projects[i]["title"],
-            "similarity": round(float(score) * 100, 2),
-            "status": get_status(score)
-        })
-
-    return jsonify({"results": results})
+@app.route('/logout')
+def logout():
+    session.pop('user', None)
+    return redirect(url_for('login'))
 
 
-if __name__ == "__main__":
-    print("TOTAL PROJECTS LOADED:", len(projects))
+if __name__ == '__main__':
     app.run(debug=True)

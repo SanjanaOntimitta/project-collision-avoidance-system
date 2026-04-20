@@ -1,109 +1,93 @@
-/* Background */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #6a11cb, #2575fc);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Main container */
-.container {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 25px;
-    border-radius: 15px;
-    width: 420px;
-    color: white;
-    box-shadow: 0 0 20px rgba(0,0,0,0.3);
-    backdrop-filter: blur(10px);
+body.light-body {
+  font-family: 'Poppins', sans-serif;
+  background: #ffffff;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Header */
-.header {
-    position: absolute;
-    top: 20px;
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
+/* CARD */
+.card {
+  background: #ffffff;
+  padding: 50px;
+  width: 420px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  text-align: center;
 }
 
-/* Textarea */
-textarea {
-    width: 100%;
-    height: 110px;
-    border-radius: 10px;
-    border: none;
-    padding: 10px;
-    resize: none;
-    font-size: 14px;
+/* TITLE */
+.card h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
 }
 
-/* File input */
-input[type="file"] {
-    margin-top: 10px;
-    color: white;
+/* SUBTEXT */
+.sub {
+  font-size: 18px;
+  margin-bottom: 25px;
+  color: #555;
 }
 
-/* Character count */
-.char-count {
-    font-size: 12px;
-    margin-top: 5px;
-    color: #ddd;
+/* LABEL */
+label {
+  display: block;
+  text-align: left;
+  font-size: 18px;
+  margin-top: 15px;
 }
 
-/* Buttons */
-.button-group {
-    text-align: center;
-    margin-top: 15px;
+/* INPUT */
+.card input, textarea {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  margin-top: 8px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 17px;
 }
 
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 10px;
-    margin: 5px;
-    cursor: pointer;
-    font-weight: bold;
+/* BUTTON */
+.btn {
+  width: 100%;
+  margin-top: 25px;
+  padding: 16px;
+  border-radius: 30px;
+  border: none;
+  background: #22c55e;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
 }
 
-/* Check button */
-button:first-child {
-    background: white;
-    color: black;
+.secondary {
+  background: #e5e7eb;
+  color: black;
 }
 
-/* Clear button */
-button:last-child {
-    background: lightgray;
+/* LINKS */
+.link {
+  color: #22c55e;
+  text-decoration: none;
 }
 
-/* Result box */
+.bottom-text {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+/* RESULT */
 .result {
-    margin-top: 20px;
-    display: none;
-}
-
-/* Progress bar (optional if used) */
-.progress-bar {
-    width: 100%;
-    background: rgba(255,255,255,0.2);
-    border-radius: 10px;
-    overflow: hidden;
-    margin: 10px 0;
-}
-
-.progress {
-    height: 20px;
-    background: #00ff99;
-    text-align: center;
-    color: black;
-    font-size: 12px;
-}
-
-/* Matches styling */
-#matchesBox p {
-    margin: 8px 0;
-    line-height: 1.5;
+  margin-top: 20px;
+  text-align: left;
 }
