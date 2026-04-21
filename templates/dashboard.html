@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- Header -->
+<div class="top-bar">
+<h2>🚀 Collision Avoidance</h2>
+<a href="/logout" class="logout-btn">Logout</a>
+</div>
+
+<!-- Text Input -->
+<textarea id="projectInput" placeholder="Enter Title + Description..."></textarea>
+
+<!-- Divider -->
+<div class="divider">
+<span>AND</span>
+</div>
+
+<!-- File Upload -->
+<input type="file" id="fileInput" accept=".txt,.pdf" class="file-input">
+
+<!-- Buttons -->
+<div class="button-group">
+<button class="check-btn" onclick="checkSimilarity()">Check</button>
+<button class="clear-btn" onclick="clearText()">Clear</button>
+</div>
+
+<!-- Results -->
+<div class="result" id="resultBox" style="display:none;">
+<div id="matchesBox"></div>
+</div>
+
+</div>
+
+<script>
+function clearText() {
+    document.getElementById("projectInput").value = "";
+    document.getElementById("fileInput").value = "";
+    document.getElementById("resultBox").style.display = "none";
+    document.getElementById("matchesBox").innerHTML = "";
+}
+
+async function checkSimilarity() {
+    let text = document.getElementById("projectInput").value.trim();
+    let file = document.getElementById("fileInput").files[0];
+
+    let box = document.getElementById("resultBox");
+    let matchesBox = document.getElementById("matchesBox");
+
+    box.style.display = "block";
+
+    // ✅ SHOW MESSAGE IN PAGE (NO ALERT)
+    if (!text || !file) {
+        matchesBox.innerHTML = `
+            <div class="result-card" style="color:red; font-weight:bold;">
+                ⚠️ Please enter BOTH text and upload file!
+            </div>
+        `;
+        return;
+    }
+
+    let formData = new FormData();
+    formData.append("text", text);
+    formData.append("file", file);
+
+    matchesBox.innerHTML = "⏳ Checking similarity...";
+
+    let response = await fetch("/check", {
+        method: "POST",
+        body: formData
+    });
+
+    let data = await response.json();
+
+    // ✅ HANDLE BACKEND ERROR ALSO
+    if (data.error) {
+        matchesBox.innerHTML = `
+            <div class="result-card" style="color:red;">
+                ${data.error}
+            </div>
+        `;
+        return;
+    }
+
+    if (!data.results || data.results.length === 0) {
+        matchesBox.innerHTML = "⚠️ No similar projects found";
+        return;
+    }
+
+    matchesBox.innerHTML = "<h3>🔍 Results:</h3>";
+
+    data.results.forEach((item, i) => {
+        let color = "lightgreen";
+        if (item.similarity > 80) color = "red";
+        else if (item.similarity >= 50) color = "orange";
+
+        matchesBox.innerHTML += `
+            <div class="result-card">
+                <b>${i + 1}. ${item.title}</b><br>
+                Similarity: ${item.similarity}%<br>
+                <span style="color:${color}; font-weight:bold;">
+                    ${item.status}
+                </span>
+            </div>
+        `;
+    });
+}
+</script>
+
+</body>
+</html>

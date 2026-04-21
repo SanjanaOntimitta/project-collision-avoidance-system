@@ -1,13 +1,23 @@
+<<<<<<< HEAD
 from flask import Flask, request, jsonify, render_template
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import json
 import os
 import re
+=======
+from flask import Flask, request, jsonify, render_template, redirect
+from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user
+from werkzeug.security import generate_password_hash, check_password_hash
+from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
+import json
+>>>>>>> 9cd494a (ready for deployment)
 import PyPDF2
 
 app = Flask(__name__)
 
+<<<<<<< HEAD
 MODEL_NAME = "all-MiniLM-L6-v2"
 BOOSTER_TEXT = "project system application software web platform solution management"
 model = None
@@ -20,13 +30,75 @@ try:
         raw_projects = json.load(f)
 except (FileNotFoundError, json.JSONDecodeError):
     raw_projects = []
+=======
+# ---------------- LOGIN ----------------
+login_manager = LoginManager()
+login_manager.init_app(app)
+login_manager.login_view = "login"
 
+class User(UserMixin):
+    def __init__(self, id, email, password):
+        self.id = id
+        self.email = email
+        self.password = password
 
+@login_manager.user_loader
+def load_user(user_id):
+    with open("users.json") as f:
+        users = json.load(f)
+    for u in users:
+        if str(u["id"]) == str(user_id):
+            return User(u["id"], u["email"], u["password"])
+    return None
+
+# ---------------- LOAD PROJECTS ----------------
+try:
+    with open("data/projects.json") as f:
+        projects = json.load(f)
+except:
+    projects = []
+
+def clean(text):
+    return text.lower().strip()
+
+def extract_text(file):
+    text = ""
+    if file and file.filename != "":
+        if file.filename.endswith(".txt"):
+            text = file.read().decode("utf-8")
+        elif file.filename.endswith(".pdf"):
+            reader = PyPDF2.PdfReader(file)
+            for page in reader.pages:
+                t = page.extract_text()
+                if t:
+                    text += " " + t
+    return text
+
+def get_status(score):
+    percent = score * 100
+    if percent > 80:
+        return "⚠️ High Similarity"
+    elif percent >= 50:
+        return "⚡ Moderate Similarity"
+    else:
+        return "✅ Low Similarity"
+>>>>>>> 9cd494a (ready for deployment)
+
+# ---------------- MODEL ----------------
+model = SentenceTransformer('all-MiniLM-L6-v2')
+
+<<<<<<< HEAD
 # ---------------- CLEAN LIGHT ----------------
 def clean(text):
     return re.sub(r"\s+", " ", str(text).lower()).strip()
+=======
+stored_texts = [clean(p["title"] + " " + p["abstract"]) for p in projects]
+stored_embeddings = model.encode(stored_texts, normalize_embeddings=True) if stored_texts else []
+>>>>>>> 9cd494a (ready for deployment)
 
+# ---------------- ROUTES ----------------
 
+<<<<<<< HEAD
 def is_valid_project(project):
     title = clean(project.get("title", ""))
     abstract = clean(project.get("abstract", ""))
@@ -142,8 +214,19 @@ def get_status(score):
 @app.route("/")
 def home():
     return render_template("index.html")
+=======
+@app.route("/")
+def home():
+    return render_template("home.html")
+>>>>>>> 9cd494a (ready for deployment)
 
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    if request.method == "POST":
+        email = request.form["email"]
+        password = request.form["password"]
 
+<<<<<<< HEAD
 # ---------------- CHECK API ----------------
 @app.route("/check", methods=["POST"])
 def check():
@@ -205,8 +288,94 @@ def check():
         })
 
     return jsonify({"results": results})
+=======
+        if not email.endswith("@cvr.ac.in"):
+            return "❌ Use only @cvr.ac.in email"
 
+        with open("users.json") as f:
+            users = json.load(f)
 
+        for u in users:
+            if u["email"] == email:
+                return "⚠️ User already exists"
+
+        users.append({
+            "id": len(users) + 1,
+            "email": email,
+            "password": generate_password_hash(password)
+        })
+
+        with open("users.json", "w") as f:
+            json.dump(users, f)
+
+        return redirect("/login")
+
+    return render_template("signup.html")
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        email = request.form["email"]
+        password = request.form["password"]
+
+        with open("users.json") as f:
+            users = json.load(f)
+
+        for u in users:
+            if u["email"] == email and check_password_hash(u["password"], password):
+                login_user(User(u["id"], u["email"], u["password"]))
+                return redirect("/dashboard")
+
+        return "❌ Invalid credentials"
+
+    return render_template("login.html")
+
+@app.route("/logout")
+@login_required
+def logout():
+    logout_user()
+    return redirect("/login")
+>>>>>>> 9cd494a (ready for deployment)
+
+@app.route("/dashboard")
+@login_required
+def dashboard():
+    return render_template("dashboard.html")
+
+<<<<<<< HEAD
 if __name__ == "__main__":
     print("TOTAL PROJECTS LOADED:", len(projects))
     app.run(debug=True)
+=======
+@app.route("/check", methods=["POST"])
+@login_required
+def check():
+    text = request.form.get("text", "").strip()
+    file = request.files.get("file")
+
+    file_text = extract_text(file)
+
+    if not text or not file_text:
+        return jsonify({"results": [], "error": "⚠️ Provide BOTH text and file"})
+
+    combined = clean(text + " " + file_text)
+
+    user_embedding = model.encode([combined], normalize_embeddings=True)
+    similarities = cosine_similarity(user_embedding, stored_embeddings)[0]
+
+    top_k = similarities.argsort()[::-1][:5]
+
+    results = []
+    for i in top_k:
+        score = similarities[i]
+        results.append({
+            "title": projects[i]["title"],
+            "similarity": round(float(score) * 100, 2),
+            "status": get_status(score)
+        })
+
+    return jsonify({"results": results})
+
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=8000)
+>>>>>>> 9cd494a (ready for deployment)
