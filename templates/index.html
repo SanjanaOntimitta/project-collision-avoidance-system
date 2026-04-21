@@ -127,8 +127,13 @@ async function checkSimilarity() {
 
         let data = await response.json();
 
+        if (!response.ok) {
+            matchesBox.innerHTML = `<p>⚠️ ${data.message || "Unable to check similarity right now."}</p>`;
+            return;
+        }
+
         if (!data.results || data.results.length === 0) {
-            matchesBox.innerHTML = "<p>⚠️ No similar projects found. Try better input.</p>";
+            matchesBox.innerHTML = `<p>⚠️ ${data.message || "No similar projects found. Try better input."}</p>`;
             return;
         }
 

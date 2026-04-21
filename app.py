@@ -2,24 +2,107 @@ from flask import Flask, request, jsonify, render_template
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 import json
+import os
+import re
 import PyPDF2
 
 app = Flask(__name__)
 
-model = SentenceTransformer('all-MiniLM-L6-v2')
+MODEL_NAME = "all-MiniLM-L6-v2"
+BOOSTER_TEXT = "project system application software web platform solution management"
+model = None
+model_load_error = None
 
 
 # ---------------- LOAD DATASET ----------------
 try:
-    with open("data/projects.json") as f:
-        projects = json.load(f)
-except FileNotFoundError:
-    projects = []
+    with open("data/projects.json", encoding="utf-8") as f:
+        raw_projects = json.load(f)
+except (FileNotFoundError, json.JSONDecodeError):
+    raw_projects = []
 
 
 # ---------------- CLEAN LIGHT ----------------
 def clean(text):
-    return text.lower().strip()
+    return re.sub(r"\s+", " ", str(text).lower()).strip()
+
+
+def is_valid_project(project):
+    title = clean(project.get("title", ""))
+    abstract = clean(project.get("abstract", ""))
+    combined = f"{title} {abstract}"
+
+    if len(title) < 10 or len(abstract) < 80:
+        return False
+
+    if len(title.split()) < 3 or len(abstract.split()) < 15:
+        return False
+
+    if title.startswith(".") or any(symbol in combined for symbol in ["|", ";"]):
+        return False
+
+    alpha_chars = sum(ch.isalpha() for ch in combined)
+    if alpha_chars < max(40, int(len(combined) * 0.6)):
+        return False
+
+    return True
+
+
+projects = [
+    {
+        "title": clean(project.get("title", "")),
+        "abstract": clean(project.get("abstract", "")),
+    }
+    for project in raw_projects
+    if is_valid_project(project)
+]
+
+
+def get_model():
+    global model, model_load_error
+
+    if model is not None:
+        return model
+
+    if model_load_error is not None:
+        raise RuntimeError(model_load_error)
+
+    try:
+        cache_dir = os.environ.get("SENTENCE_TRANSFORMERS_HOME")
+        model = SentenceTransformer(MODEL_NAME, cache_folder=cache_dir)
+        return model
+    except Exception as exc:
+        model_load_error = f"Unable to load similarity model '{MODEL_NAME}': {exc}"
+        raise RuntimeError(model_load_error) from exc
+
+
+def build_stored_embeddings():
+    if not projects:
+        return []
+
+    current_model = get_model()
+    stored_texts = [
+        clean(f"{project['title']} {project['abstract']}")
+        for project in projects
+    ]
+    return current_model.encode(stored_texts, normalize_embeddings=True)
+
+
+stored_embeddings = None
+
+
+def get_stored_embeddings():
+    global stored_embeddings
+
+    if stored_embeddings is not None:
+        return stored_embeddings
+
+    embeddings = build_stored_embeddings()
+    if len(embeddings) != len(projects):
+        raise RuntimeError("Project dataset and embeddings are out of sync.")
+
+    stored_embeddings = embeddings
+    return stored_embeddings
 
 
 # ---------------- EXTRACT FILE TEXT ----------------
@@ -27,15 +110,20 @@ def extract_text(file):
     text = ""
 
     if file and file.filename != "":
-        if file.filename.endswith(".txt"):
-            text = file.read().decode("utf-8")
+        filename = file.filename.lower()
 
-        elif file.filename.endswith(".pdf"):
-            reader = PyPDF2.PdfReader(file)
-            for page in reader.pages:
-                page_text = page.extract_text()
-                if page_text:
-                    text += " " + page_text
+        if filename.endswith(".txt"):
+            text = file.read().decode("utf-8", errors="ignore")
+
+        elif filename.endswith(".pdf"):
+            try:
+                reader = PyPDF2.PdfReader(file)
+                for page in reader.pages:
+                    page_text = page.extract_text()
+                    if page_text:
+                        text += " " + page_text
+            except Exception:
+                return ""
 
     return text
 
@@ -50,16 +138,6 @@ def get_status(score):
     else:
         return "✅ Low Similarity"
 
-
-# ---------------- PRE-ENCODE DATASET ----------------
-stored_texts = [
-    clean(p["title"] + " " + p["abstract"])
-    for p in projects
-]
-
-stored_embeddings = model.encode(stored_texts, normalize_embeddings=True)
-
-
 # ---------------- HOME ----------------
 @app.route("/")
 def home():
@@ -71,6 +149,18 @@ def home():
 def check():
     text = request.form.get("text", "").strip()
     file = request.files.get("file")
+
+    if not projects:
+        return jsonify({
+            "results": [],
+            "message": "No valid projects are available to compare yet. Rebuild the dataset and try again."
+        }), 503
+
+    try:
+        current_model = get_model()
+        current_embeddings = get_stored_embeddings()
+    except RuntimeError as exc:
+        return jsonify({"results": [], "message": str(exc)}), 503
 
     file_text = extract_text(file)
 
@@ -90,14 +180,15 @@ def check():
 
     # 🔥 IMPORTANT FIX: boost short text input
     if len(combined.split()) < 5:
-        combined += " project system application software quiz portal web development"
+        combined = f"{combined} {BOOSTER_TEXT}".strip()
 
     # ---------------- EMBEDDING ----------------
-    user_embedding = model.encode([combined], normalize_embeddings=True)
+    user_embedding = current_model.encode([combined], normalize_embeddings=True)
 
-    similarities = cosine_similarity(user_embedding, stored_embeddings)[0]
+    similarities = cosine_similarity(user_embedding, current_embeddings)[0]
 
-    print("\nMAX SIMILARITY:", max(similarities))
+    if len(similarities) == 0:
+        return jsonify({"results": []})
 
     # ---------------- TOP RESULTS ----------------
     top_k = similarities.argsort()[::-1][:5]

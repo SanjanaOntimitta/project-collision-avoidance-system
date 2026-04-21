@@ -27,19 +27,53 @@ def clean(text):
     return text
 
 
+def is_valid_entry(title, abstract):
+    combined = f"{title} {abstract}"
+
+    if len(title) < 10 or len(abstract) < 80:
+        return False
+
+    if len(title.split()) < 3 or len(abstract.split()) < 15:
+        return False
+
+    if title.startswith(".") or any(symbol in combined for symbol in ["|", ";"]):
+        return False
+
+    alpha_chars = sum(ch.isalpha() for ch in combined)
+    if alpha_chars < max(40, int(len(combined) * 0.6)):
+        return False
+
+    return True
+
+
 # ---------------- PROCESS PDFs ----------------
-for file in os.listdir(pdf_folder):
+if not os.path.isdir(pdf_folder):
+    raise FileNotFoundError(f"PDF folder not found: {pdf_folder}")
+
+for file in sorted(os.listdir(pdf_folder)):
     if file.endswith(".pdf"):
         print(f"Processing: {file}")
 
         path = os.path.join(pdf_folder, file)
 
-        pages = convert_from_path(path, poppler_path=POPPLER_PATH) if POPPLER_PATH else convert_from_path(path)
+        try:
+            pages = convert_from_path(path, poppler_path=POPPLER_PATH) if POPPLER_PATH else convert_from_path(path)
+        except Exception as exc:
+            print(f"Skipping {file}: unable to render PDF ({exc})")
+            continue
 
         full_text = ""
 
         for page in pages:
-            full_text += pytesseract.image_to_string(page)
+            try:
+                full_text += pytesseract.image_to_string(page)
+            except Exception as exc:
+                print(f"Skipping {file}: OCR failed ({exc})")
+                full_text = ""
+                break
+
+        if not full_text.strip():
+            continue
 
         # 🔥 IMPROVED SPLITTING
         full_text = full_text.replace("\n", " ")
@@ -54,10 +88,10 @@ for file in os.listdir(pdf_folder):
         abstract = clean(parts[1][:500])
 
         # 🔥 FILTER BAD DATA
-        if len(title) < 5 or len(abstract) < 30:
+        if "copyright" in abstract or "introduction" not in abstract:
             continue
 
-        if "copyright" in abstract or "introduction" not in abstract:
+        if not is_valid_entry(title, abstract):
             continue
 
         data.append({
